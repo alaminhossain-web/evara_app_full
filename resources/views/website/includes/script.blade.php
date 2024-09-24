@@ -28,6 +28,63 @@
 <script src="{{asset('/')}}website/assets/js/shopd134.js?v=3.4"></script>
 
 
+<!-- Toster js  -->
+<script src="{{ asset('/') }}website/assets/js/plugins/toastr.min.js
+"></script>
+<!-- sweet alert 2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(document).on('click', '.delete-item', function() {
+        event.preventDefault();
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById("deleteItem").submit();
+            }
+        });
+    })
+</script>
+@if (session('message'))
+<script>
+    toastr.options = {
+        "closeButton": true,
+        "progressBar": true,
+        "positionClass": "toast-bottom-right",
+    };
+
+    toastr.success("{{ session('message') }}");
+    </script>
+@endif
+
+@if (session('error'))
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+        };
+        toastr.error("{{ session('error') }}");
+    </script>
+@endif
+
+@if (session('warning'))
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+        };
+        toastr.info("{{ session('warning') }}");
+    </script>
+@endif
+
 
 {{--      Product datails                  --}}
 {{--      vendor Product   category subcategory    --}}

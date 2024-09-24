@@ -372,15 +372,15 @@
                 <div class="header-action-right d-block d-lg-none">
                     <div class="header-action-2">
                         <div class="header-action-icon-2">
-                            <a href="shop-wishlist.html">
-                                <img alt="Evara" src="{{asset('/')}}website/assets/imgs/theme/icons/icon-heart.svg">
-                                <span class="pro-count white">4</span>
+                            <a href="{{ route('wishlist.index') }}">
+                                <img alt="wishlist icon" src="{{asset('/')}}website/assets/imgs/theme/icons/icon-heart.svg">
+                                <span class="pro-count white">{{count($wishlists)}}</span>
                             </a>
                         </div>
                         <div class="header-action-icon-2">
-                            <a class="mini-cart-icon" href="shop-cart.html">
-                                <img alt="Evara" src="{{asset('/')}}website/assets/imgs/theme/icons/icon-cart.svg">
-                                <span class="pro-count white">2</span>
+                            <a class="mini-cart-icon" href="{{ route('cart.index') }}">
+                                <img alt="cart icon" src="{{asset('/')}}website/assets/imgs/theme/icons/icon-cart.svg">
+                                <span class="pro-count white">{{ count(Cart::content()) }}</span>
                             </a>
                             <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                 <ul>
@@ -433,12 +433,12 @@
         </div>
     </div>
 </header>
-
+<!--Mobile Menu -->
 <div class="mobile-header-active mobile-header-wrapper-style">
     <div class="mobile-header-wrapper-inner">
         <div class="mobile-header-top">
             <div class="mobile-header-logo">
-                <a href="index-2.html"><img src="{{asset('/')}}website/assets/imgs/theme/logo.svg" alt="logo"></a>
+                <a href="/"><img src="{{asset('/')}}website/assets/imgs/theme/logo.svg" alt="logo"></a>
             </div>
             <div class="mobile-menu-close close-style-wrap close-style-position-inherit">
                 <button class="close-style search-close">

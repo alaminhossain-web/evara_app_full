@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Size;
+use App\Models\Unit;
 use App\Models\Brand;
-use App\Models\Category;
 use App\Models\Color;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\ProductSize;
+use App\Models\SubCategory;
 use App\Models\ProductColor;
 use App\Models\ProductImage;
-use App\Models\ProductSize;
-use App\Models\Size;
-use App\Models\SubCategory;
-use App\Models\Unit;
 use Illuminate\Http\Request;
+use App\Models\ProductVariant;
+use Illuminate\Contracts\Validation\Rule;
 
 class ProductController extends Controller
 {
@@ -60,13 +62,24 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-//        return $request;
-        $this->product = Product::newProduct($request);
-        ProductColor::newProductColor($request->colors , $this->product->id);
-        ProductSize::newProductSize($request->sizes, $this->product->id);
-        ProductImage::newProductImage($request->other_images,$this->product->id);
-        return back()->with('message','Product info save successfully');
-
+        $request->validate([
+            'sku.*' => 'required|unique:product_variants,sku',
+        ]);
+        // dd($request->all());
+       $this->product = Product::newProduct($request);
+       // Save product variants (including images)
+    ProductVariant::newProductVariant(
+        $request->sku,
+        $request->variant_regular_price,
+        $request->file('variant_image'), // use file method to get the uploaded files
+        $request->variant_selling_price,
+        $request->variant_stock_amount,
+        $request->color_id,
+        $request->size_id,
+        $this->product->id
+    );
+       ProductImage::newProductImage($request->other_images,$this->product->id);
+       return back()->with('message','Product Info save successfully');
     }
 
     /**
@@ -101,15 +114,37 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+
+       // Validation
+    // $request->validate([
+    //     'sku.*' => [
+    //         'required',
+    //         Rule::unique('product_variants', 'sku')
+    //             ->where('product_id', $product->id)
+    //             ->ignore($product->id, 'product_id')
+    //     ],
+       
+    // ]);
+
+        ProductVariant::updateProductVariant(
+            $request->sku,
+            $request->variant_regular_price,
+            $request->file('variant_image'),
+            $request->variant_selling_price,
+            $request->variant_stock_amount,
+            $request->color_id,
+            $request->size_id,
+            $product->id
+        );
         Product::updateProduct($request,$product);
-        ProductColor::updateProductColor($request->colors,$product->id);
-        ProductSize::updateProductSize($request->sizes,$product->id);
-        if ($request->other_images){
+        // ProductColor::updateProductColor($request->colors,$product->id);
+        // ProductSize::updateProductSize($request->sizes,$product->id);
+        if($request->other_images)
+        {
             ProductImage::updateProductImage($request->other_images,$product->id);
+
         }
-
-
-        return redirect('/product')->with('message','Product info update successfully.');
+        return redirect('/product')->with('update','Product info Update Successfully.');
 
     }
 
@@ -118,7 +153,15 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        dd($product);
         Product::deleteProduct($product);
-        return back()->with('message', 'Delete Product Successfully');
+        ProductVariant::deleteVariant($product->id);
+        ProductImage::deleteProductImage($product->id);
+        return back()->with('error','Product Info Deleted Successfully');
+    }
+    public function delete_variants($id)
+    {
+        ProductVariant::deleteProductVariant($id);
+        return back()->with('error','Product Variant Deleted Successfully');
     }
 }

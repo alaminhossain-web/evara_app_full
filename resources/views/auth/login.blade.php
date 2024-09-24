@@ -1,14 +1,7 @@
 <!doctype html>
 <html lang="en" dir="ltr">
-
-
-
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-
-
-
 <head>
-
     <!-- META DATA -->
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
@@ -19,10 +12,10 @@
           content="">
 
     <!-- TITLE -->
-    <title>Noa - Laravel Bootstrap 5 Admin & Dashboard Template</title>
+    <title>{{ $setting->company_name }}</title>
 
     <!-- FAVICON -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('/')}}admin/assets/images/brand/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ $setting->favicon }}" />
 
     <!-- BOOTSTRAP CSS -->
     <link id="style" href="{{asset('/')}}admin/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -60,7 +53,7 @@
         <!-- CONTAINER OPEN -->
         <div class="col col-login mx-auto text-center">
             <a href="{{route('home')}}" target="_blank" class="text-center">
-                <img src="{{asset('/')}}website/assets/imgs/theme/logo.svg" class="header-brand-img" alt="">
+                <img src="{{ $setting->logo_png }}" class="header-brand-img" alt="">
 
             </a>
         </div>
@@ -82,20 +75,19 @@
                              data-bs-validate="Valid email is required: ex@abc.xyz">
                             <input class="input100" type="email" name="email" placeholder="Email">
                             <span class="focus-input100"></span>
-                            <span class="symbol-input100">
-											<i class="zmdi zmdi-email" aria-hidden="true"></i>
+                            <span class="symbol-input100" @if ($errors->has('email')) style="margin-bottom:10px;" @endif><i class="zmdi zmdi-email" aria-hidden="true"></i>
 										</span>
-                            <span class="text-danger">{{$errors->has('email') ? $errors->first('email') : ''}}</span>
+                            <div class="text-danger mt-2">{{$errors->has('email') ? $errors->first('email') : ''}}</div>
                         </div>
                         <div class="wrap-input100 validate-input" data-bs-validate="Password is required">
                             <input class="input100" type="password" name="password" placeholder="Password">
                             <span class="focus-input100"></span>
-                            <span class="symbol-input100">
-											<i class="zmdi zmdi-lock" aria-hidden="true"></i>
+                            <span class="symbol-input100" @if ($errors->has('password')) style="margin-bottom:10px;" @endif><i class="zmdi zmdi-lock" aria-hidden="true"></i>
 										</span>
+                            <div class="text-danger mt-2">{{$errors->has('password') ? $errors->first('password') : ''}}</div>
                         </div>
                         <div class="text-end pt-1">
-                            <p class="mb-0"><a href="" class="text-primary ms-1">Forgot
+                            <p class="mb-0"><a href="{{ route('password.request') }}" class="text-primary ms-1">Forgot
                                     Password?</a></p>
                         </div>
                         <div class="container-login100-form-btn">
@@ -103,10 +95,10 @@
                                 Login
                             </button>
                         </div>
-                        <div class="text-center pt-3">
-                            <p class="text-dark mb-0">Not a member?<a href="{{--{{ route('register')}}--}}" class="text-primary ms-1">Create
+                        {{-- <div class="text-center pt-3">
+                            <p class="text-dark mb-0">Not a member?<a href="" class="text-primary ms-1">Create
                                     an Account</a></p>
-                        </div>
+                        </div> --}}
 
 
                     </form>

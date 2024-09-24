@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\WishList;
 use Illuminate\Http\Request;
-use Session;
+use Illuminate\Support\Facades\Session;
 
 class WishListController extends Controller
 {
@@ -29,12 +29,12 @@ class WishListController extends Controller
 
                 return back()->with('message', 'Product added to wishlist.');
             } else {
-                return back()->with('message', 'Product already in wishlist.');
+                return back()->with('warning', 'Product already in wishlist.');
             }
 
         } else {
 //            return back()->with('message','Please login/register for ad to wishlist.');
-            return redirect('/login-register')->with('message', 'Please login/register for ad to wishlist.');
+            return redirect('/login-register')->with('error', 'Please login/register for ad to wishlist.');
 
         }
 

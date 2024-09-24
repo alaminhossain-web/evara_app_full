@@ -105,7 +105,7 @@ Route::get('/my-dashboard',[CustomerAuthController::class,'dashboard'])->name('c
 
 //Wishlist
 Route::resource('wishlist',WishListController::class);
-Route::get('/wishlist-ad/{id}', [WishListController::class,'wishListAdd'])->name('wishlist.ad');
+Route::get('/wishlist-add/{id}', [WishListController::class,'wishListAdd'])->name('wishlist.ad');
 
 
 // SSLCOMMERZ Start
@@ -161,6 +161,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::resource('size', SizeController::class);
     Route::resource('product', ProductController::class);
     Route::resource('product_offer', ProductOfferController::class);
+    Route::get('/delete-variants/{id}', [ProductController::class, 'delete_variants'])->name('delete.variants');
 
     //Order Module
 

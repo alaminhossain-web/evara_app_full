@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\Order;
-use Session;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use PDF;
 class CustomerAuthController extends Controller
@@ -32,12 +32,12 @@ class CustomerAuthController extends Controller
                 return redirect('/my-dashboard');
             }
             else{
-                return back()->with('message','Your password is not valid ');
+                return back()->with('error','Your password is not valid ');
             }
         }
         else{
 
-            return back()->with('message','Your email or Mobile number is not valid ');
+            return back()->with('error','Your email or Mobile number is not valid ');
         }
 
     }

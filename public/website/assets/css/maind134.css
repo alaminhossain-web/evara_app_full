@@ -4528,6 +4528,24 @@ table .product-thumbnail img {
 .product-color-purple {
   background: #ff8ff8;
 }
+.product-color-blue {
+  background: #1304f1;
+}
+.product-color-black {
+  background: #000000;
+}
+.product-color-gold {
+  background: #f3bc06;
+}
+.product-color-pink {
+  background: #f803a6;
+}
+.product-color-silver {
+  background: #c0c0c0;
+}
+.product-color-purple {
+  background: #ff8080;
+}
 
 .detail-gallery .slick-slider {
   background-color: #000;

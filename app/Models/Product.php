@@ -87,11 +87,14 @@ class Product extends Model
     }
     public function colors()
     {
-        return $this->hasMany(ProductColor::class);
+        return $this->hasMany(ProductVariant::class);
     }
     public function sizes()
     {
-        return $this->hasMany(ProductSize::class);
+        return $this->hasMany(ProductVariant::class);
+    }
+    public function variants(){
+        return $this->hasMany(ProductVariant::class);
     }
     public function productImages()
     {

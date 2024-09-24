@@ -92,8 +92,56 @@
 <!-- SWITCHER JS -->
 <script src="{{asset('/')}}admin/assets/switcher/js/switcher.js"></script>
 
-<!-- SELECT2 JS -->
-{{--<script src="{{asset('/')}}admin/assets/plugins/select2/select2.full.min.js"></script>--}}
+<!-- Toster js  -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js
+"></script>
+<!-- sweet alert 2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(document).on('click', '.delete-item', function() {
+        event.preventDefault();
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById("deleteItem").submit();
+            }
+        });
+    })
+</script>
+@if (session('message'))
+    <script>
+         toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+        };
+        toastr.success("{{ session('message') }}");
+    </script>
+@endif
+@if (session('error'))
+    <script>
+         toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+        };
+        toastr.error("{{ session('error') }}");
+    </script>
+@endif
+@if (session('update'))
+    <script>
+         toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+        };
+        toastr.warning("{{ session('update') }}");
+    </script>
+@endif
 
 
 
@@ -153,6 +201,184 @@
 </script>
 
 
+
+<script>
+    $(document).ready(function(){
+        var maxField = 30; //Input fields increment limitation
+        var addButton = $('.add_button'); //Add button selector
+        var wrapper = $('.field_wrapper'); //Input field wrapper
+        var x = 1; //Initial field counter is 1
+
+        // Prepare the HTML template without Blade directives
+        var sizes = @json($sizes); // Pass sizes array from Laravel to JS
+        var colors = @json($colors); // Pass colors array from Laravel to JS
+
+        // Generate dynamic HTML template with variant number
+        function generateFieldHTML(variantNumber) {
+            let sizeOptions = sizes.map(size => `<option value="${size.id}">${size.name}</option>`).join('');
+            let colorOptions = colors.map(color => `<option value="${color.id}">${color.name}</option>`).join('');
+
+            return `
+                <div class="field_wrapper mt-3">
+                    <label class="card-title">Product Variant ${variantNumber}</label>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="form-label">SKU</label>
+                            <input type="text" class="form-control" name="sku[]" placeholder="SKU" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Regular Price</label>
+                            <input type="number" class="form-control" name="variant_regular_price[]" placeholder="Regular Price" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Selling Price</label>
+                            <input type="number" class="form-control" name="variant_selling_price[]" placeholder="Selling Price" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Stock Amount</label>
+                            <input type="number" class="form-control" name="variant_stock_amount[]" placeholder="Stock Amount" />
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <label class="form-label">Image</label>
+                            <input type="file" class="form-control" name="variant_image[]" />
+                        </div>
+                        <div class="col-md-3 form-group">
+                            <label class="form-label">Select Size</label>
+                            <select multiple class="form-control select2" data-placeholder="Select Size" name="size_id[]">
+                                ${sizeOptions}
+                            </select>
+                        </div>
+                        <div class="col-md-3 form-group">
+                            <label class="form-label">Select Color</label>
+                            <select multiple class="form-control select2" data-placeholder="Select Color" name="color_id[]">
+                                ${colorOptions}
+                            </select>
+                        </div>
+                        <div class="col-md-2 d-flex align-items-end">
+                            <a href="javascript:void(0);" class="remove_button btn btn-sm btn-danger mb-5" title="Remove field">
+                                <i class="fa fa-minus"></i> Remove
+                            </a>
+                        </div>
+                    </div>
+                </div>`;
+        }
+
+        // Once add button is clicked
+        $(addButton).click(function(){
+            // Check maximum number of input fields
+            if(x < maxField){
+                x++; // Increase field counter
+                let newField = generateFieldHTML(x); // Generate new field HTML with the current number
+                $(wrapper).append(newField); // Add field HTML
+                $('.select2').select2(); // Reinitialize select2 for the new fields
+            } else {
+                alert('A maximum of '+maxField+' fields are allowed to be added.');
+            }
+        });
+
+        // Once remove button is clicked (use delegated event binding for dynamic elements)
+        $(wrapper).on('click', '.remove_button', function(e){
+            e.preventDefault();
+            $(this).closest('.field_wrapper').remove(); // Remove field HTML
+            x--; // Decrease field counter
+            renumberProductVariants(); // Renumber remaining product variants
+        });
+
+        // Initialize select2 on existing fields
+        $('.select2').select2();
+
+        // Function to renumber product variants after a field is removed
+        function renumberProductVariants() {
+            $('.field_wrapper').each(function(index, element) {
+                $(element).find('.card-title').text('Product Variant ' + (index + 1));
+            });
+        }
+    });
+</script>
+<!-- JavaScript to handle dynamic fields -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var wrapper = document.querySelector('.variant-wrapper');
+        var addButton = document.querySelector('.add_button1');
+
+        // Function to initialize Select2
+        function initializeSelect2() {
+            $('.select2').select2({
+                width: '100%' // Optionally, you can set the width to 100% for better display
+            });
+        }
+
+        // Initialize Select2 on page load
+        initializeSelect2();
+
+        // Handle adding new fields
+        addButton.addEventListener('click', function() {
+            var newFieldHtml = `
+                <div class="field_wrapper mt-3">
+                    <label class="card-title">Product Variant</label>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="form-label">SKU</label>
+                            <input type="text" class="form-control" name="sku[]" placeholder="SKU" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Regular Price</label>
+                            <input type="number" class="form-control" name="variant_regular_price[]" placeholder="Regular Price" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Selling Price</label>
+                            <input type="number" class="form-control" name="variant_selling_price[]" placeholder="Selling Price" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Stock Amount</label>
+                            <input type="number" class="form-control" name="variant_stock_amount[]" placeholder="Stock Amount" />
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <label class="form-label">Image</label>
+                            <input type="file" class="form-control" name="variant_image[]" />
+                        </div>
+                        <div class="col-md-3 form-group">
+                            <label class="form-label">Select Size</label>
+                            <select multiple class="form-control select2 form-select" data-placeholder="Select Size" name="size_id[]">
+                                @foreach ($sizes as $size)
+                                    <option value="{{ $size->id }}">{{ $size->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-3 form-group">
+                            <label class="form-label">Select Color</label>
+                            <select multiple class="form-control select2 form-select" data-placeholder="Select Color" name="color_id[]">
+                                @foreach ($colors as $color)
+                                    <option value="{{ $color->id }}">{{ $color->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-2 d-flex align-items-end">
+                            <a href="javascript:void(0);" class="remove_button btn btn-sm btn-danger mb-5" title="Remove field">
+                                <i class="fa fa-minus"></i> Remove
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            wrapper.insertAdjacentHTML('beforeend', newFieldHtml);
+            
+            // Initialize Select2 on the newly added select fields
+            initializeSelect2();
+        });
+
+        // Handle removal of fields
+        wrapper.addEventListener('click', function(e) {
+            if (e.target && e.target.classList.contains('remove_button')) {
+                e.target.closest('.field_wrapper').remove();
+            }
+        });
+    });
+</script>
 
 
 

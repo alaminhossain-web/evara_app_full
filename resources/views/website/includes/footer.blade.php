@@ -7,12 +7,12 @@
                 <div class="col-lg-7 mb-md-3 mb-lg-0">
                     <div class="row align-items-center">
                         <div class="col flex-horizontal-center">
-                            <img class="icon-email" src="{{asset($setting->logo_png)}}" alt="{{$setting->company_name}}">
+                            <img class="icon-email" src="{{ asset('/') }}website/assets/imgs/theme/icons/icon-email.svg" alt="email">
                             <h4 class="font-size-20 mb-0 ml-3">Sign up to Newsletter</h4>
                         </div>
-                        <div class="col my-4 my-md-0 des">
+                        {{-- <div class="col my-4 my-md-0 des">
                             <h5 class="font-size-15 ml-4 mb-0">...and receive <strong>$25 coupon for first shopping.</strong></h5>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="col-lg-5">
@@ -36,7 +36,7 @@
                         </div>
                         <h5 class="mt-20 mb-10 fw-600 text-grey-4 wow fadeIn animated">Contact</h5>
                         <p class="wow fadeIn animated">
-                            <strong>Address: </strong>{{$setting->copany_address}}
+                            <strong>Address: </strong>{{$setting->company_address}}
                         </p>
                         <p class="wow fadeIn animated">
                             <strong>Phone: </strong> {{$setting->support_phone}}

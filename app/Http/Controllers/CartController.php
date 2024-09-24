@@ -17,7 +17,7 @@ class CartController extends Controller
     {
 //        return Cart::content();
         return view('website.cart.index',[
-            'products' => Cart::content()
+            'products' => Cart::content(),
         ]);
 
     }

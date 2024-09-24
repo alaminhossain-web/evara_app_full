@@ -5,10 +5,10 @@
     <div class="app-sidebar">
         <div class="side-header">
             <a class="header-brand1" href="{{ route('dashboard') }}">
-                <img src="{{asset('/')}}website/assets/imgs/theme/logo.svg" class="header-brand-img desktop-logo" alt="logo">
-                <img src="{{asset('/')}}website/assets/imgs/theme/logo.svg" class="header-brand-img toggle-logo" alt="logo">
-                <img src="{{asset('/')}}website/assets/imgs/theme/logo.svg" class="header-brand-img light-logo" alt="logo">
-                <img src="{{asset('/')}}website/assets/imgs/theme/logo.svg" class="header-brand-img light-logo1" alt="logo">
+                <img src="{{ asset($setting->logo_jpg) }}" class="header-brand-img desktop-logo" alt="logo">
+                <img src="{{ asset($setting->logo_jpg) }}" class="header-brand-img toggle-logo" alt="logo">
+                <img src="{{ asset($setting->logo_png) }}" class="header-brand-img light-logo" alt="logo">
+                <img src="{{ asset($setting->logo_png) }}" class="header-brand-img light-logo1" alt="logo">
             </a><!-- LOGO -->
         </div>
         <div class="main-sidemenu">

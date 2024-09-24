@@ -76,7 +76,7 @@ class EvaraController extends Controller
             $this->discount = '';
         }
 
-        return view('website.product.index', [
+        return view('website.product.index1', [
             'product' => $this->product,
             'category_products' => Product::where('category_id',$this->product->category_id)
             ->orderBy('id','desc')
@@ -85,4 +85,5 @@ class EvaraController extends Controller
             'discount'  => $this->discount,
         ]);
     }
+    
 }
