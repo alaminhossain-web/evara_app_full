@@ -1,6 +1,6 @@
 
 
-@if(\Request::route()->getname() == "home")
+@if(\Request::route()->getname() == "home1")
 
 <!-- Modal -->
 <div class="modal fade custom-modal" id="onloadModal" tabindex="-1" aria-labelledby="onloadModalLabel" aria-hidden="true">

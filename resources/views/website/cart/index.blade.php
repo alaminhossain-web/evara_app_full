@@ -70,7 +70,7 @@
                         </div>
                         <div class="cart-action text-end">
                             <button type="submit" class="btn"><i class="fi-rs-shopping-bag mr-10"></i>Update Cart</button>
-                            <a href="{{route('home')}}" class="btn"><i class="fi-rs-shopping-bag mr-10"></i>Continue Shopping</a>
+                            <a href="{{route('home')}}" class="btn mt-2"><i class="fi-rs-shopping-bag mr-10"></i>Continue Shopping</a>
                         </div>
                     </form>
                     <div class="divider center_icon mt-50 mb-50"><i class="fi-rs-fingerprint"></i></div>
