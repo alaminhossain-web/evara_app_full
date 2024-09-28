@@ -2,7 +2,49 @@
 @extends('website.master')
 @section('title','Popular E-commerce Website in Bangladesh')
 @section('body')
+<section class="home-slider position-relative pt-25 pb-20">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 d-sm-none d-lg-block">
+                <div class="widget-category mb-30">
+                    <h5 class="section-title style-1 mb-30 wow fadeIn animated">Category</h5>
+                    <ul class="categories">
+                        @foreach ($categories as $data)
+                        <li><a href="{{route('product-category',['id' => $data->id])}}">{{ $data->name }}</a></li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="position-relative">
+                    <div class="hero-slider-1 style-3 dot-style-1 dot-style-1-position-1">
+                        @foreach ($product_offers as $product_offer)
 
+                        <div class="single-hero-slider single-animation-wrap">
+                            <div class="container">
+                                <div class="slider-1-height-3 slider-animated-1">
+                                    <div class="hero-slider-content-2">
+                                        <h4 class="animated">{{ $product_offer->title_one }}</h4>
+                                        <h2 class="animated fw-900">{{ $product_offer->title_two }}</h2>
+                                        <h1 class="animated fw-900 text-brand">{{ $product_offer->title_three }}</h1>
+                                        <p class="animated">{{ $product_offer->description }}</p>
+                                        <a class="animated btn btn-brush btn-brush-3" href="{{route('product-detail', ['id' => $product_offer->product_id])}}"> Shop Now </a>
+                                    </div>
+                                    <div class="slider-img">
+                                        <img src="{{ asset($product_offer->image) }}" alt="" >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       @endforeach
+                    </div>
+                    <div class="slider-arrow hero-slider-1-arrow style-3"></div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
     <section class="home-slider position-relative pt-50">
         <div class="hero-slider-1 dot-style-1 dot-style-1-position-1">
             @foreach ($product_offers as $product_offer)
