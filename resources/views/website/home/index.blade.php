@@ -45,7 +45,7 @@
         </div>
     </div>
 </section>
-    <section class="home-slider position-relative pt-50">
+    {{-- <section class="home-slider position-relative pt-50">
         <div class="hero-slider-1 dot-style-1 dot-style-1-position-1">
             @foreach ($product_offers as $product_offer)
                 <div class="single-hero-slider single-animation-wrap">
@@ -74,7 +74,7 @@
 
         </div>
         <div class="slider-arrow hero-slider-1-arrow"></div>
-    </section>
+    </section> --}}
     <section class="featured section-padding position-relative">
         <div class="container">
             <div class="row">
