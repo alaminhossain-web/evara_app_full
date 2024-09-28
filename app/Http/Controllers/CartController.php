@@ -50,7 +50,7 @@ class CartController extends Controller
                     'image'  => self::$product->image,
                     'code'   => self::$product->code,
                     'size'   => $request->size,
-                    'color'   => $request->color,
+                    'color'  => $request->color,
                 ]
         ]);
 

@@ -22,11 +22,11 @@
             <div class="container">
 
                 <div class="row">
-                    <div class="col">
+                    <div class="col-md-6 mx-auto">
                         <div class="card card-body">
-                            <p class="text-success text-center">
+                            <div class=" text-success text-center">
                                 {{session('message')}}
-                            </p>
+                            </div>
                         </div>
 
                     </div>

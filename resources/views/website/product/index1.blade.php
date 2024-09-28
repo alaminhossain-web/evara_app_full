@@ -87,7 +87,7 @@
                                             {{-- {{ dd($item->color) }} --}}
                                                     <li class="">
                                                         <a href="#" class="product_color size_{{ $item->size->name }}"
-                                                           onclick="selectColor('{{ $item->color->name }}', '{{ strtolower($item->color->name) }}')">
+                                                           onclick="selectColor('{{ $item->color->id }}', '{{ strtolower($item->color->name) }}')">
                                                             <span class="product-color-{{ strtolower($item->color->name) }}"></span>
                                                         </a>
                                                     </li>
@@ -100,12 +100,12 @@
                                             @endphp
                                             {{-- {{ dd($uniqueSizes) }} --}}
                                             <script>
-                                                function showColor(size) {
+                                                function showColor(size,sizeId) {
                                                     $('.attr-color').removeClass('d-none');
                                                     // Hide all colors first
                                                     $('.product_color').hide();
                                                     $('.size_' + size).show();
-                                                    $('#selected_size_id').val(size);
+                                                    $('#selected_size_id').val(sizeId);
                                                 }
                                 
                                                 function selectColor(colorId, colorName) {
@@ -119,7 +119,7 @@
                                             <ul class="list-filter size-filter font-small">
                                                 @foreach ($uniqueSizes as $sizeId => $size)
                                                     <li class="{{ $sizeId == 0 ? 'active' : '' }}">
-                                                        <a href="javascript:void(0);" onclick="showColor('{{ $size }}')">{{ $size }}</a>
+                                                        <a href="javascript:void(0);" onclick="showColor('{{ $size }}','{{ $sizeId }}')">{{ $size }}</a>
                                                     </li>
                                                 @endforeach
                                             </ul>

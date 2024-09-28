@@ -18,11 +18,66 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return view('admin.order.index',[
-//            'orders' => Order::all()
-            'orders' => Order::orderby('id','desc')->get()
-        ]);
+        $orders = Order::orderby('id','desc')->get();
+
+        // Count orders by each status
+        $statusCounts = [
+            'All' => Order::count(),
+            'Pending' => Order::where('order_status', 'Pending')->count(),
+            'Processing' => Order::where('order_status', 'Processing')->count(),
+            'Complete' => Order::where('order_status', 'Complete')->count(),
+            'Cancel' => Order::where('order_status', 'Cancel')->count(),
+        ];
+
+        return view('admin.order.index', compact('orders', 'statusCounts'));
     }
+    public function filter(Request $request)
+    {
+        $query = Order::query();
+    
+        // Apply status filter if provided and not 'All'
+        if ($request->has('status') && $request->status != 'All') {
+            $query->where('order_status', $request->status);
+        }
+    
+        // Apply date filter if provided
+        if ($request->has('date_range')) {
+            switch ($request->date_range) {
+                case 'today':
+                    $query->whereDate('created_at', today());
+                    break;
+                case 'yesterday':
+                    $query->whereDate('created_at', today()->subDay());
+                    break;
+                case 'last_week':
+                    $query->whereBetween('created_at', [now()->startOfWeek()->subWeek(), now()->endOfWeek()->subWeek()]);
+                    break;
+                case 'last_month':
+                    $query->whereMonth('created_at', now()->subMonth()->month);
+                    break;
+                case 'last_year':
+                    $query->whereYear('created_at', now()->subYear()->year);
+                    break;
+                case 'lifetime':
+                    // No date filter, return all records
+                    break;
+                case 'custom':
+                    if ($request->has('start_date') && $request->has('end_date')) {
+                        $query->whereBetween('created_at', [$request->start_date, $request->end_date]);
+                    }
+                    break;
+            }
+        }
+    
+        // Fetch the filtered orders
+        $orders = $query->latest()->get();
+    
+        // Return a view that contains only the table rows
+        return view('admin.order.partials.order-rows', compact('orders'))->render();
+    }
+    
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -108,6 +163,24 @@ class OrderController extends Controller
 //            'order' => Order::find($id)
 //        ]);
     }
+    public function updateStatus(Request $request)
+{
+    // $request->validate([
+    //     'status' => 'required|string',
+    //     'order_ids' => 'required|array',
+    //     'order_ids.*' => 'exists:orders,id'
+    // ]);
+
+    $status = $request->input('status');
+    $orderIds = $request->input('order_ids');
+
+    Order::whereIn('id', $orderIds)->update(['order_status' => $status]);
+
+    return response()->json(['status' => $status]);
+}
+
+
+
 
 
 

@@ -168,6 +168,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::resource('order', OrderController::class);
     Route::get('/order/invoice-show/{id}', [OrderController::class,'showInvoice'])->name('order.invoice-show');
     Route::get('/order/invoice-download/{id}', [OrderController::class,'showDownload'])->name('order.invoice-download');
+    Route::get('/orders/filter', [OrderController::class, 'filter'])->name('orders.filter');
+    Route::post('/orders/updateStatus', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
+
+
 
     //Feature Module
     Route::resource('feature', FeatureController::class);

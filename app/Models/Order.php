@@ -40,9 +40,14 @@ class Order extends Model
 
     public static function updateOrder($request , $id)
     {
+       
         self::$order = Order::find($id);
-
-
+        foreach(self::$order->orderDetails as $data){
+            $product_id = $data;
+        }
+        $productQty = ProductVariant::where('color_id',$product_id->product_color)->where('size_id',$product_id->product_size)->first();
+        
+        // dd($productQty->variant_stock_amount-$product_id->product_qty);
 //         self::$order->product_id;
 //         $proInfo=Product::where('id',self::$order->product_id)->get();
 //         $proInfo->vendor_id;
@@ -66,6 +71,8 @@ class Order extends Model
             self::$order->delivery_status = $request->order_status ;
             self::$order->payment_status = $request->order_status ;
             self::$order->courier_id = $request->courier_id ;
+            $productQty->variant_stock_amount = $productQty->variant_stock_amount-$product_id->product_qty;
+            $productQty->save();
 
         }
         elseif ($request->order_status == 'Complete'){
