@@ -29,37 +29,50 @@
                                     <th scope="col">Remove</th>
                                 </tr>
                                 </thead>
+                               
                                 <tbody>
-                                @php($sum = 0)
-                                @foreach($products as $key=> $product)
-                                    
-                                    <tr>
-                                        <td class="image product-thumbnail"><img src="{{ asset($product->options->image) }}" alt="#"></td>
-                                        <td class="product-des product-name">
-                                            <h5 class="product-name"><a href="{{route('product-detail', ['id' => $product->id])}}" target="_blank">{{ $product->name }}</a></h5>
-                                            <p class="font-xs">
-                                                <span class="fw-bold">Color: </span> {{$product->options->color}} <br/>
-                                                <span class="fw-bold">Size: </span> {{$product->options->size}} <br/>
-                                            </p>
-                                        </td>
-                                        <td class="price" data-title="Price"><span>TK. {{ $product->price }} </span></td>
-                                        <td class="text-center" data-title="Stock">
-                                            <div class=" w-25 m-auto">
-                                                <input type="number" name="data[{{$key}}][qty]" min="1" class="form-control" value="{{$product->qty}}"/>
-                                                <input type="hidden" name="data[{{$key}}][rowId]" class="form-control" value="{{$product->rowId}}"/>
-                                            </div>
-                                        </td>                                      
-                                        <td class="text-right" data-title="Cart">
-                                            <span>TK. {{$product->subtotal}} </span>
-                                        </td>
-                                        <td class="action" data-title="Remove">
-                                            <a href="{{route('cart.delete', ['rowId' => $product->rowId])}}" onclick="return confirm('Are you sure to delete this..');" class="btn bg-danger border-0 btn-sm">
-                                                <i class="fi-rs-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    @php($sum += $product->subtotal)
-                                @endforeach
+                                    @php($sum = 0)
+                                    @foreach($products as $key => $product)
+                                        @php
+                                            $colorName = $colors->where('id', $product->options->color)->first();
+                                            $sizeName = $sizes->where('id', $product->options->size)->first();
+                                        @endphp
+                                
+                                        <tr>
+                                            <td class="image product-thumbnail">
+                                                <img src="{{ asset($product->options->image) }}" alt="#">
+                                            </td>
+                                            <td class="product-des product-name">
+                                                <h5 class="product-name">
+                                                    <a href="{{ route('product-detail', ['id' => $product->id]) }}" target="_blank">{{ $product->name }}</a>
+                                                </h5>
+                                                <p class="font-xs">
+                                                    <span class="fw-bold">Color: </span> {{ $colorName ? $colorName->name : 'N/A' }} <br/>
+                                                    <span class="fw-bold">Size: </span> {{ $sizeName ? $sizeName->name : 'N/A' }} <br/>
+                                                </p>
+                                            </td>
+                                            <td class="price" data-title="Price">
+                                                <span>TK. {{ $product->price }}</span>
+                                            </td>
+                                            <td class="text-center" data-title="Stock">
+                                                <div class="w-25 m-auto">
+                                                    <input type="number" name="data[{{$key}}][qty]" min="1" class="form-control" value="{{ $product->qty }}"/>
+                                                    <input type="hidden" name="data[{{$key}}][rowId]" class="form-control" value="{{ $product->rowId }}"/>
+                                                </div>
+                                            </td>
+                                            <td class="text-right" data-title="Cart">
+                                                <span>TK. {{ $product->subtotal }}</span>
+                                            </td>
+                                            <td class="action" data-title="Remove">
+                                                <a href="{{ route('cart.delete', ['rowId' => $product->rowId]) }}" 
+                                                   onclick="return confirm('Are you sure to delete this?');" 
+                                                   class="btn bg-danger border-0 btn-sm">
+                                                    <i class="fi-rs-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        @php($sum += $product->subtotal)
+                                    @endforeach
                                 <tr>
                                     <td colspan="6" class="text-end">
                                         <a href="#" class="text-muted"> <i class="fi-rs-cross-small"></i> Clear Cart</a>
@@ -76,7 +89,38 @@
                     <div class="divider center_icon mt-50 mb-50"><i class="fi-rs-fingerprint"></i></div>
                     <div class="row mb-50">
                         <div class="col-lg-6 col-md-12">
-                           
+                            {{-- <div class="heading_s1 mb-3">
+                                <h4>Calculate Shipping</h4>
+                            </div>
+                            <p class="mt-15 mb-30">Flat rate: <span class="font-xl text-brand fw-900">5%</span></p>
+                            <form class="field_form shipping_calculator">
+                                <div class="form-row">
+                                    <div class="form-group col-lg-12">
+                                        <div class="custom_select">
+                                            <select class="form-control select-active">
+                                                <option value="">Choose a option...</option>
+                                                <option value="AG">Antigua and Barbuda</option>
+                                                <option value="YE">Yemen</option>
+                                                <option value="ZM">Zambia</option>
+                                                <option value="ZW">Zimbabwe</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row row">
+                                    <div class="form-group col-lg-6">
+                                        <input required="required" placeholder="State / Country" name="name" type="text">
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                        <input required="required" placeholder="PostCode / ZIP" name="name" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-lg-12">
+                                        <button class="btn  btn-sm"><i class="fi-rs-shuffle mr-10"></i>Update</button>
+                                    </div>
+                                </div>
+                            </form> --}}
                             <div class="mb-30 mt-50">
                                 <div class="heading_s1 mb-3">
                                     <h4>Apply Coupon</h4>

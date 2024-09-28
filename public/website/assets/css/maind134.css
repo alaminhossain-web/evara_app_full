@@ -4449,7 +4449,15 @@ table .product-thumbnail img {
 }
 
 .button.button-add-to-cart {
-  padding: 8px 40px;
+  padding: 8px 15px;
+}
+.button.button-buy-now {
+  padding: 8px 15px;
+  background-color: #0b7343ed;
+  border: 1px solid #0b7343ed;
+}
+.button.button-buy-now:hover {
+  background-color: #0b7343 !important;
 }
 
 .product-extra-link2 a {

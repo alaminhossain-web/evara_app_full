@@ -32,7 +32,7 @@
                                         @foreach ($product->productImages as $productImage)
                                             <figure class="border-radius-10">
                                                 <img src="{{ asset($productImage->image) }}" alt="product image"
-                                                    style="height: 638px; width:546px">
+                                                    style="height: 300px; width:100%">
                                             </figure>
                                         @endforeach
                                     </div>
@@ -40,7 +40,7 @@
                                     <div class="slider-nav-thumbnails pl-15 pr-15">
                                         @foreach ($product->productImages as $productImage)
                                             <div><img src="{{ asset($productImage->image) }}" alt="product image"
-                                                    style="height: 98px">
+                                                    style="height: 75px">
                                             </div>
                                         @endforeach
 
@@ -48,6 +48,31 @@
                                 </div>
                                 <!-- End Gallery -->
                             </div>
+                            <script>
+                                function showColor(size,sizeId) {
+                                    $('.attr-color').removeClass('d-none');
+                                    // Hide all colors first
+                                    $('.product_color').hide();
+                                    $('.size_' + size).show();
+                                    $('#selected_size_id').val(sizeId);
+                                }
+                
+                                function selectColor(colorId, colorName) {
+                                    $('#selected_color_id').val(colorId);
+                                    $('.product_color').removeClass('active');
+                                    $('.product_color.size_' + colorName).addClass('active');
+                                }
+                            
+                                function changeQty(change) {
+                                    var qtyVal = parseInt(document.getElementById('qty-val').innerText);
+                                    qtyVal += change;
+                                    if (qtyVal < 1) qtyVal = 1; // Prevent going below 1
+                                    document.getElementById('qty-val').innerText = qtyVal;
+                                    document.getElementById('qty-input').value = qtyVal; // Update hidden input
+                                }
+                            </script>
+                            
+                
                             <div class="col-md-6 col-sm-12 col-xs-12">
 
                                 <form action="{{ route('cart.store') }}" method="post">
@@ -55,6 +80,8 @@
                                     <input type="hidden" name="id" value="{{ $product->id }}">
                                     <input type="hidden" name="size" id="selected_size_id" value="">
                                     <input type="hidden" name="color" id="selected_color_id" value="">
+                                    <input type="hidden" name="action_type" id="action_type" value="add_to_cart"> <!-- Hidden input to track button clicked -->
+
                                     <div class="detail-info">
                                         <h2 class="title-detail">{{ $product->name }}</h2>
                                         <div class="product-detail-rating">
@@ -99,22 +126,7 @@
                                                 $uniqueSizes = $product->sizes->unique('size_id')->pluck('size.name','size_id');
                                             @endphp
                                             {{-- {{ dd($uniqueSizes) }} --}}
-                                            <script>
-                                                function showColor(size,sizeId) {
-                                                    $('.attr-color').removeClass('d-none');
-                                                    // Hide all colors first
-                                                    $('.product_color').hide();
-                                                    $('.size_' + size).show();
-                                                    $('#selected_size_id').val(sizeId);
-                                                }
-                                
-                                                function selectColor(colorId, colorName) {
-                                                    $('#selected_color_id').val(colorId);
-                                                    $('.product_color').removeClass('active');
-                                                    $('.product_color.size_' + colorName).addClass('active');
-                                                }
-                                            </script>
-                                
+                                           
                                             <strong class="mr-10">Size</strong>
                                             <ul class="list-filter size-filter font-small">
                                                 @foreach ($uniqueSizes as $sizeId => $size)
@@ -126,15 +138,6 @@
                                         </div>
                                 
                                         <div class="bt-1 border-color-1 mt-30 mb-30"></div>
-                                        <script>
-                                            function changeQty(change) {
-                                                var qtyVal = parseInt(document.getElementById('qty-val').innerText);
-                                                qtyVal += change;
-                                                if (qtyVal < 1) qtyVal = 1; // Prevent going below 1
-                                                document.getElementById('qty-val').innerText = qtyVal;
-                                                document.getElementById('qty-input').value = qtyVal; // Update hidden input
-                                            }
-                                        </script>
                                         
                                         <div class="detail-extralink">
                                             <div class="detail-qty border radius">
@@ -144,11 +147,11 @@
                                             </div>
                                             <input type="hidden" name="qty" id="qty-input" value="1" min="1" />
                                             <div class="product-extra-link2">
-                                                <button type="submit" class="button button-add-to-cart">Add to cart</button>
+                                                <button type="submit" class="button button-add-to-cart" onclick="document.getElementById('action_type').value = 'add_to_cart'">Add to Cart</button>
+                                                <button type="submit" class="button button-buy-now"  onclick="document.getElementById('action_type').value = 'buy_now'">Buy Now</button>
                                                 <a aria-label="Add To Wishlist" class="action-btn hover-up" href="{{ route('wishlist.ad', ['id' => $product->id]) }}">
                                                     <i class="fi-rs-heart"></i>
                                                 </a>
-                                                <a aria-label="Compare" class="action-btn hover-up" href=""><i class="fi-rs-shuffle"></i></a>
                                             </div>
                                         </div>
                                         

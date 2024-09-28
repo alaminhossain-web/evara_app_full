@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Color;
 use App\Models\Product;
+use App\Models\Size;
 use Illuminate\Http\Request;
 use Cart;
 
@@ -18,6 +20,8 @@ class CartController extends Controller
 //        return Cart::content();
         return view('website.cart.index',[
             'products' => Cart::content(),
+            'colors' =>Color::get(),
+            'sizes' =>Size::get()
         ]);
 
     }
@@ -34,31 +38,53 @@ class CartController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-//        return $request;
+{
+    self::$product = Product::find($request->id);
 
+    // Check if the product is already in the cart
+    $cartItem = Cart::search(function ($cartItem, $rowId) use ($request) {
+        return $cartItem->id === $request->id &&
+               $cartItem->options->size === $request->size &&
+               $cartItem->options->color === $request->color;
+    })->first();
 
-        self::$product = Product::find($request->id);
-
-        Cart::add([
-            'id'        => $request->id,
-            'name'      => self::$product->name,
-            'qty'       => $request->qty,
-            'price'     => self::$product->selling_price,
-            'options'   =>
-                [
-                    'image'  => self::$product->image,
-                    'code'   => self::$product->code,
-                    'size'   => $request->size,
-                    'color'  => $request->color,
-                ]
-        ]);
-
-//        return Cart::content();
-//        return redirect(route('cart.index'))->with('messages','Add to Cart sucessfully');
-        return redirect('/cart')->with('messages','Add to Cart sucessfully');
-
+    // If the product is already in the cart
+    if ($cartItem) {
+        $message = 'Product is already in the cart.';
+        
+        if ($request->action_type === 'buy_now') {
+            return redirect('/checkout')->with('warning', $message);
+        } else {
+            return redirect('/cart')->with('warning', $message);
+        }
     }
+
+    // If the product is not in the cart, add it
+    Cart::add([
+        'id'        => $request->id,
+        'name'      => self::$product->name,
+        'qty'       => $request->qty,
+        'price'     => self::$product->selling_price,
+        'options'   => [
+            'image'  => self::$product->image,
+            'code'   => self::$product->code,
+            'size'   => $request->size,
+            'color'  => $request->color,
+        ]
+    ]);
+
+    // Set success message for adding the product
+    $message = 'Added to cart successfully.';
+
+    // Redirect based on action type
+    if ($request->action_type === 'buy_now') {
+        return redirect('/checkout')->with('message', $message);
+    }
+
+    return redirect('/cart')->with('message', $message);
+}
+
+    
 
     /**
      * Display the specified resource.
@@ -90,14 +116,14 @@ class CartController extends Controller
     public function destroy(string $id)
     {
         Cart::remove ($id);
-        return back()->with('message','Cart product remove successfully.');
+        return back()->with('error','Cart product remove successfully.');
     }
 
 
     public function delete(string $rowId)
     {
         Cart::remove ($rowId);
-        return back()->with('message','Cart product remove successfully.');
+        return back()->with('error','Cart product remove successfully.');
     }
 
     public function updateProduct(Request $request)
@@ -109,7 +135,7 @@ class CartController extends Controller
 
         }
 
-        return redirect('/cart')->with('message','Cart product update successfully');
+        return redirect('/cart')->with('warning','Cart product update successfully');
     }
 
 
