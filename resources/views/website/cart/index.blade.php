@@ -17,7 +17,7 @@
                     <form action="{{route('cart.update-product')}}" method="post">
                         @csrf
                         <div class="table-responsive">
-                            <p class="text-center">{{session('message')}}</p>
+                            {{-- <p class="text-center">{{session('message')}}</p> --}}
                             <table class="table shopping-summery text-center clean">
                                 <thead>
                                 <tr class="main-heading">
@@ -53,7 +53,7 @@
                                             <span>TK. {{$product->subtotal}} </span>
                                         </td>
                                         <td class="action" data-title="Remove">
-                                            <a href="{{route('cart.delete', ['rowId' => $product->rowId])}}" onclick="return confirm('Are you sure to delete this..');" class="btn bg-danger border-0 btn-sm">
+                                            <a href="{{route('cart.delete', ['rowId' => $product->rowId])}}"  class="text-danger delete-item">
                                                 <i class="fi-rs-trash"></i>
                                             </a>
                                         </td>

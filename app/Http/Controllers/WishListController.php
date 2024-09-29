@@ -107,6 +107,6 @@ class WishListController extends Controller
         $wishLists = WishList::find($id);
         //dd($wishLists);
         $wishLists->delete();
-        return back()->with('message', 'Product deleted from wishlist successfully.');
+        return back()->with('error', 'Product deleted from wishlist successfully.');
     }
 }

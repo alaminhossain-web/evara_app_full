@@ -75,20 +75,25 @@
         </div>
         <div class="slider-arrow hero-slider-1-arrow"></div>
     </section> --}}
-    <section class="featured section-padding position-relative">
-        <div class="container">
-            <div class="row">
-               @foreach($features as $feature)
-                <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-                    <div class="banner-features wow fadeIn animated hover-up">
-                        <img src="{{asset($feature->image)}}" alt="">
-                        <h4 class="bg-3">{{$feature->name}}</h4>
-                    </div>
+    <section class="popular-categories section-padding mt-15 mb-25">
+        <div class="container wow fadeIn animated">
+            <h3 class="section-title mb-20"><span>Popular</span> Categories</h3>
+            <div class="carausel-6-columns-cover position-relative">
+                <div class="slider-arrow slider-arrow-2 carausel-6-columns-arrow" id="carausel-6-columns-arrows"></div>
+                <div class="carausel-6-columns" id="carausel-6-columns">
+                    @foreach($categories as $category)
+                        <div class="card-1">
+                            <figure class="img-hover-scale overflow-hidden">
+                                <a href="#"><img src="{{ asset($category->image)}}" alt="" style="height: 150px;"></a>
+                            </figure>
+                            <h5><a href="{{route('product-category',['id' => $category->id])}}">{{($category->name)}}</a></h5>
+                        </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
         </div>
     </section>
+    
     <section class="product-tabs section-padding position-relative wow fadeIn animated">
         <div class="bg-square"></div>
         <div class="container">
@@ -97,9 +102,9 @@
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="nav-tab-one" data-bs-toggle="tab" data-bs-target="#tab-one" type="button" role="tab" aria-controls="tab-one" aria-selected="true">Featured</button>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    {{-- <li class="nav-item" role="presentation">
                         <button class="nav-link" id="nav-tab-two" data-bs-toggle="tab" data-bs-target="#tab-two" type="button" role="tab" aria-controls="tab-two" aria-selected="false">Popular</button>
-                    </li>
+                    </li> --}}
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="nav-tab-three" data-bs-toggle="tab" data-bs-target="#tab-three" type="button" role="tab" aria-controls="tab-three" aria-selected="false">New added</button>
                     </li>
@@ -117,12 +122,12 @@
                                     <div class="product-img-action-wrap">
                                         <div class="product-img product-img-zoom">
                                             <a href="{{ route('product-detail',$product->id) }}">
-                                                <img class="default-img" src="{{asset($product->image)}}" height="300" alt="">
-                                                <img class="hover-img" src="{{asset($product->image)}}" alt="">
+                                                <img class="default-img" src="{{asset($product->image)}}" alt="" style="height: 250px;">
+                                                <img class="hover-img" src="{{asset($product->image)}}" alt="" style="height: 250px;">
                                             </a>
                                         </div>
                                         <div class="product-action-1">
-                                            <a aria-label="Quick view" class="action-btn hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
+                                            {{-- <a aria-label="Quick view" class="action-btn hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a> --}}
                                             <a aria-label="Add To Wishlist" class="action-btn hover-up" href="{{ route('wishlist.ad',$product->id) }}"><i class="fi-rs-heart"></i></a>
                                         </div>
                                         <div class="product-badges product-badges-position product-badges-mrg">
@@ -131,9 +136,9 @@
                                     </div>
                                     <div class="product-content-wrap">
                                         <div class="product-category">
-                                            <a href="#">{{$product->category->name}}</a>
+                                            <a href="{{ route('product-category',$product->id) }}">{{$product->category->name}}</a>
                                         </div>
-                                        <h2><a href="#">{{$product->name}}</a></h2>
+                                        <h2><a href="{{ route('product-detail',$product->id) }}">{{$product->name}}</a></h2>
                                         <div class="rating-result" title="90%">
                                             <span>
                                                 <span>90%</span>
@@ -155,7 +160,7 @@
                     <!--End product-grid-4-->
                 </div>
                 <!--En tab one (Featured)-->
-                <div class="tab-pane fade" id="tab-two" role="tabpanel" aria-labelledby="tab-two">
+                {{-- <div class="tab-pane fade" id="tab-two" role="tabpanel" aria-labelledby="tab-two">
                     <div class="row product-grid-4">
                         <div class="col-lg-3 col-md-4 col-12 col-sm-6">
                             <div class="product-cart-wrap mb-30">
@@ -198,48 +203,50 @@
 
                     </div>
                     <!--End product-grid-4-->
-                </div>
+                </div> --}}
                 <!--En tab two (Popular)-->
                 <div class="tab-pane fade" id="tab-three" role="tabpanel" aria-labelledby="tab-three">
                     <div class="row product-grid-4">
+                        @foreach ($newProducts as $product)
                         <div class="col-lg-3 col-md-4 col-12 col-sm-6">
                             <div class="product-cart-wrap mb-30">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
-                                        <a href="shop-product-right.html">
-                                            <img class="default-img" src="{{asset('/')}}website/assets//imgs/shop/product-2-1.jpg" alt="">
-                                            <img class="hover-img" src="{{asset('/')}}website/assets//imgs/shop/product-2-2.jpg" alt="">
+                                        <a href="{{ route('product-detail',$product->id) }}">
+                                            <img class="default-img" src="{{asset($product->image)}}" alt="" style="height:250px">
+                                            <img class="hover-img" src="{{asset($product->image)}}" alt="" style="height:250px">
                                         </a>
                                     </div>
                                     <div class="product-action-1">
-                                        <a aria-label="Quick view" class="action-btn hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
-                                        <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                        <a aria-label="Add To Wishlist" class="action-btn hover-up" href="{{ route('wishlist.ad',$product->id) }}"><i class="fi-rs-heart"></i></a>
                                         <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
                                     </div>
                                     <div class="product-badges product-badges-position product-badges-mrg">
-                                        <span class="hot">Hot</span>
+                                        <span class="hot">New</span>
                                     </div>
                                 </div>
                                 <div class="product-content-wrap">
                                     <div class="product-category">
-                                        <a href="shop-grid-right.html">Music</a>
+                                        <a href="{{ route('product-category',$product->id) }}">{{$product->category->name}}</a>
                                     </div>
-                                    <h2><a href="shop-product-right.html">Donec ut nisl rutrum</a></h2>
+                                    <h2><a href="{{ route('product-detail',$product->id) }}">{{$product->name}}</a></h2>
                                     <div class="rating-result" title="90%">
                                             <span>
                                                 <span>90%</span>
                                             </span>
                                     </div>
                                     <div class="product-price">
-                                        <span>$238.85 </span>
-                                        <span class="old-price">$245.8</span>
+                                        <span>{{$product->selling_price}}</span>
+                                        <span class="old-price">{{$product->regular_price}}</span>
                                     </div>
                                     <div class="product-action-1 show">
-                                        <a aria-label="Add To Cart" class="action-btn hover-up" href="shop-cart.html"><i class="fi-rs-shopping-bag-add"></i></a>
+                                        <a aria-label="Add To Cart" class="action-btn hover-up" href="{{ route('product-detail',$product->id) }}"><i class="fi-rs-shopping-bag-add"></i></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        @endforeach
+                        
 
                     </div>
                     <!--End product-grid-4-->
@@ -249,7 +256,8 @@
             <!--End tab-content-->
         </div>
     </section>
-    <section class="banner-2 section-padding pb-0">
+
+    {{-- <section class="banner-2 section-padding pb-0">
         <div class="container">
             @foreach($ad04s as $ad04)
             <div class="banner-img banner-big wow fadeIn animated f-none">
@@ -264,26 +272,23 @@
             @endforeach
         </div>
     </section>
-
-    <section class="popular-categories section-padding mt-15 mb-25">
-        <div class="container wow fadeIn animated">
-            <h3 class="section-title mb-20"><span>Popular</span> Categories</h3>
-            <div class="carausel-6-columns-cover position-relative">
-                <div class="slider-arrow slider-arrow-2 carausel-6-columns-arrow" id="carausel-6-columns-arrows"></div>
-                <div class="carausel-6-columns" id="carausel-6-columns">
-                    @foreach($categories as $category)
-                        <div class="card-1">
-                            <figure class="img-hover-scale overflow-hidden">
-                                <a href="#"><img src="{{ asset($category->image)}}" height="200" alt=""></a>
-                            </figure>
-                            <h5><a href="{{route('product-category',['id' => $category->id])}}">{{($category->name)}}</a></h5>
-                        </div>
-                    @endforeach
+     --}}
+    <!-- Featured Section Start-->
+    <section class="featured section-padding position-relative">
+        <div class="container">
+            <div class="row">
+               @foreach($features as $feature)
+                <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
+                    <div class="banner-features wow fadeIn animated hover-up">
+                        <img src="{{asset($feature->image)}}" alt="">
+                        <h4 class="bg-3">{{$feature->name}}</h4>
+                    </div>
                 </div>
+                @endforeach
             </div>
         </div>
     </section>
-
+    <!-- Featured Section End-->
 
     <section class="banners mb-15">
         <div class="container">
@@ -315,17 +320,17 @@
                         <div class="product-img-action-wrap">
                             <div class="product-img product-img-zoom">
                                 <a href="{{ route('product-detail',$vendor_product->id)}}">
-                                    <img class="default-img" src="{{asset($vendor_product->image)}}"  height="200" alt="">
-                                    <img class="hover-img" src="{{asset($vendor_product->image)}}" alt="">
+                                    <img class="default-img" src="{{asset($vendor_product->image)}}"  style="height: 250px" alt="">
+                                    <img class="hover-img" src="{{asset($vendor_product->image)}}" style="height: 250px" alt="">
                                 </a>
                             </div>
                             <div class="product-action-1">
-                                <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal">
-                                    <i class="fi-rs-eye"></i></a>
+                                {{-- <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal">
+                                    <i class="fi-rs-eye"></i></a> --}}
                                 <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="{{ route('wishlist.ad',$vendor_product->id) }}" tabindex="0"><i class="fi-rs-heart"></i></a>
                                  </div>
                             <div class="product-badges product-badges-position product-badges-mrg">
-                                <span class="hot">Hot</span>
+                                <span class="hot">New</span>
                             </div>
                         </div>
                         <div class="product-content-wrap">
@@ -346,7 +351,7 @@
         </div>
     </section>
 
-    <section class="deals section-padding">
+    {{-- <section class="deals section-padding">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 deal-co">
@@ -385,7 +390,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <section class="section-padding">
         <div class="container">
             <h3 class="section-title mb-20 wow fadeIn animated"><span>Featured</span> Brands</h3>
@@ -393,7 +398,7 @@
                 <div class="slider-arrow slider-arrow-2 carausel-6-columns-arrow" id="carausel-6-columns-3-arrows"></div>
                 <div class="carausel-6-columns text-center" id="carausel-6-columns-3">
                     @foreach($brands as $brand)
-                        <div class="brand-logo">
+                        <div class="brand-logo ms-3">
                             <img class="img-grey-hover" src="{{ asset($brand->image) }}" height="200px" alt="{{ $brand->name }}">
                         </div>
                     @endforeach
@@ -401,7 +406,8 @@
             </div>
         </div>
     </section>
-    <section class="bg-grey-9 section-padding">
+
+    {{-- <section class="bg-grey-9 section-padding">
         <div class="container pt-25 pb-25">
             <div class="heading-tab d-flex">
                 <div class="heading-tab-left wow fadeIn animated">
@@ -576,8 +582,9 @@
                 <!--End Col-lg-9-->
             </div>
         </div>
-    </section>
-    <section class="section-padding">
+    </section> --}}
+    <!--Blog-->
+    {{-- <section class="section-padding">
         <div class="container pt-25 pb-20">
             <div class="row">
                 <div class="col-lg-6">
@@ -667,7 +674,8 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
+<!--Ads Section-->
     <section class="mb-50">
         <div class="container">
             <div class="row">
@@ -684,7 +692,8 @@
             </div>
         </div>
     </section>
-    <section class="mb-45">
+
+    {{-- <section class="mb-45">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6 mb-sm-5 mb-md-0">
@@ -840,6 +849,6 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
 @endsection

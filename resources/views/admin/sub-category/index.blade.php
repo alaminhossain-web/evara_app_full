@@ -31,7 +31,7 @@
                                 <th class="border-bottom-0">SL NO</th>
                                 <th class="border-bottom-0">Category Name</th>
                                 <th class="border-bottom-0">Sub Category Name</th>
-                                <th class="border-bottom-0">Description</th>
+                                {{-- <th class="border-bottom-0">Description</th> --}}
                                 <th class="border-bottom-0">Image</th>
                                 <th class="border-bottom-0">Status</th>
                                 <th class="border-bottom-0">Action</th>
@@ -43,7 +43,7 @@
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$sub_category->category->name}}</td>
                                     <td>{{$sub_category->name}}</td>
-                                    <td>{{ substr($sub_category->description,0,50) }}</td>
+                                    {{-- <td>{{ substr($sub_category->description,0,50) }}</td> --}}
                                     <td><img src="{{asset($sub_category->image)}}" alt="" height="40" width="60"/></td>
                                     <td>{{$sub_category->status == 1 ? 'Published' : 'Unpublished'}}</td>
                                     <td>
@@ -58,8 +58,7 @@
                                         <form action="{{ route('sub-category.destroy',$sub_category->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm float-start m-1"
-                                                    onclick="return confirm('Are you want to delete this !!!')">
+                                            <button type="submit" class="btn btn-danger btn-sm float-start m-1 delete-item">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </form>

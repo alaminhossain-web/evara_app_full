@@ -19,10 +19,12 @@ class EvaraController extends Controller
     {
       return view('website.home.index',[
           'products' => Product::where('featured_status',1)
+                        ->orderBy('id','asc')
+                        ->take(8)
+                        ->get(['id','name','image','category_id','regular_price','selling_price']),
+          'newProducts' => Product::orderBy('created_at','desc')->limit(8)->get(),
          // 'products' => Product::where('status',1)
-              ->orderBy('id','desc')
-              ->take(8)
-              ->get(['id','name','image','category_id','regular_price','selling_price']),
+           
 //          'product_offers' => ProductOffer::all(),
           'product_offers'  => ProductOffer::where('status',1)->orderBy('id','desc')->take(4)->get(),
           'vendor_products' => Product::whereNot('vendor_id', 0)->where('status', 1)->orderBy('id','desc')->take(16)->get(),

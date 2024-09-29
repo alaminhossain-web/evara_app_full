@@ -38,51 +38,51 @@ class CartController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    self::$product = Product::find($request->id);
+    {
+        self::$product = Product::find($request->id);
 
-    // Check if the product is already in the cart
-    $cartItem = Cart::search(function ($cartItem, $rowId) use ($request) {
-        return $cartItem->id === $request->id &&
-               $cartItem->options->size === $request->size &&
-               $cartItem->options->color === $request->color;
-    })->first();
+        // Check if the product is already in the cart
+        $cartItem = Cart::search(function ($cartItem, $rowId) use ($request) {
+            return $cartItem->id === $request->id &&
+                $cartItem->options->size === $request->size &&
+                $cartItem->options->color === $request->color;
+        })->first();
 
-    // If the product is already in the cart
-    if ($cartItem) {
-        $message = 'Product is already in the cart.';
-        
-        if ($request->action_type === 'buy_now') {
-            return redirect('/checkout')->with('warning', $message);
-        } else {
-            return redirect('/cart')->with('warning', $message);
+        // If the product is already in the cart
+        if ($cartItem) {
+            $message = 'Product is already in the cart.';
+            
+            if ($request->action_type === 'buy_now') {
+                return redirect('/checkout')->with('warning', $message);
+            } else {
+                return redirect('/cart')->with('warning', $message);
+            }
         }
+
+        // If the product is not in the cart, add it
+        Cart::add([
+            'id'        => $request->id,
+            'name'      => self::$product->name,
+            'qty'       => $request->qty,
+            'price'     => self::$product->selling_price,
+            'options'   => [
+                'image'  => self::$product->image,
+                'code'   => self::$product->code,
+                'size'   => $request->size,
+                'color'  => $request->color,
+            ]
+        ]);
+
+        // Set success message for adding the product
+        $message = 'Added to cart successfully.';
+
+        // Redirect based on action type
+        if ($request->action_type === 'buy_now') {
+            return redirect('/checkout')->with('message', $message);
+        }
+
+        return redirect('/cart')->with('message', $message);
     }
-
-    // If the product is not in the cart, add it
-    Cart::add([
-        'id'        => $request->id,
-        'name'      => self::$product->name,
-        'qty'       => $request->qty,
-        'price'     => self::$product->selling_price,
-        'options'   => [
-            'image'  => self::$product->image,
-            'code'   => self::$product->code,
-            'size'   => $request->size,
-            'color'  => $request->color,
-        ]
-    ]);
-
-    // Set success message for adding the product
-    $message = 'Added to cart successfully.';
-
-    // Redirect based on action type
-    if ($request->action_type === 'buy_now') {
-        return redirect('/checkout')->with('message', $message);
-    }
-
-    return redirect('/cart')->with('message', $message);
-}
 
     
 

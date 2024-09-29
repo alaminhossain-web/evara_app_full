@@ -53,7 +53,7 @@
                                         <a href="{{route('unit.edit', $unit->id)}}" class="btn btn-success btn-sm float-start m-1">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        @if($unit->status ==1 )
+                                        @if($unit->status == 1 )
                                             <a href="{{ route('unit.show',$unit->id ) }}" class="btn btn-warning btn-sm float-start m-1" > <i class="fa fa-lock"></i></a>
                                         @else
                                             <a href="{{ route('unit.show',$unit->id ) }}" class="btn btn-blue btn-sm float-start m-1" > <i class="fa fa-unlock"></i></a>
@@ -62,7 +62,7 @@
                                         <form action="{{ route('unit.destroy',$unit->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm float-start m-1" onclick="return confirm('Are you want to delete this !!!')">
+                                            <button type="submit" class="btn btn-danger btn-sm float-start m-1 delete-item" >
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </form>

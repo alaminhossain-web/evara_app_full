@@ -21,7 +21,7 @@
                 <div class="col-lg-9">
                     <div class="shop-product-fillter">
                         <div class="totall-product">
-                            <p> We found <strong class="text-brand">688</strong> items for you!</p>
+                            <p> We found <strong class="text-brand">{{ $products->count() }}</strong> items for you!</p>
                         </div>
                         <div class="sort-by-product-area">
                             <div class="sort-by-cover mr-10">
@@ -72,13 +72,13 @@
                                     <div class="product-img-action-wrap">
                                         <div class="product-img product-img-zoom">
                                             <a href="{{ route('product-detail',$product->id) }}">
-                                                <img class="default-img" src="{{asset($product->image)}}" height="300px" alt="">
-                                                <img class="hover-img" src="{{asset($product->image)}}" height="300px" alt="">
+                                                <img class="default-img" src="{{asset($product->image)}}" height="250px" alt="">
+                                                <img class="hover-img" src="{{asset($product->image)}}" height="250px" alt="">
                                             </a>
                                         </div>
                                         <div class="product-action-1">
-                                            <a aria-label="Quick view" class="action-btn hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal">
-                                                <i class="fi-rs-search"></i></a>
+                                            {{-- <a aria-label="Quick view" class="action-btn hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal">
+                                                <i class="fi-rs-search"></i></a> --}}
                                             <a aria-label="Add To Wishlist" class="action-btn hover-up" href="{{ route('wishlist.ad',$product->id) }}"><i class="fi-rs-heart"></i></a>
                                              </div>
                                         <div class="product-badges product-badges-position product-badges-mrg">

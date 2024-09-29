@@ -98,23 +98,29 @@
 <!-- sweet alert 2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    $(document).on('click', '.delete-item', function() {
-        event.preventDefault();
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById("deleteItem").submit();
-            }
-        });
-    })
-</script>
+     $(document).on('click', '.delete-item', function(event) {
+    event.preventDefault();
+        var form = $(this).closest('form');
+    // var id = $(this).data('id'); // Get the ID of the clicked category
+    // var formId = '#deleteItem-' + id; // Construct the unique form ID
+
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // $(formId).submit(); // Submit the form with the unique ID
+            form.submit();
+        }
+    });
+});
+ </script>
+
 @if (session('message'))
     <script>
          toastr.options = {

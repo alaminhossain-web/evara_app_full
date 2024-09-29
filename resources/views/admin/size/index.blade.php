@@ -61,7 +61,7 @@
                                         <form action="{{ route('size.destroy',$size->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm float-start m-1" onclick="return confirm('Are you want to delete this !!!')">
+                                            <button type="submit" class="btn btn-danger btn-sm float-start m-1 delete-item" >
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </form>

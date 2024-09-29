@@ -20,9 +20,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <p class="text-center text-success">
+                    {{-- <p class="text-center text-success">
                         {{ session('message') }}
-                    </p>
+                    </p> --}}
                     <div class="table-responsive">
                         <table class="table shopping-summery text-center">
 
@@ -53,18 +53,17 @@
                                 <td class="text-right" data-title="Cart">
                                     <a href="{{ route('product-detail',['id' => $wishListItem->product->id])}}" class="btn btn-sm"><i class="fi-rs-shopping-bag mr-5"></i>Add to cart</a>
                                 </td>
-                                <td>
-                                    <form action="{{ route('wishlist.destroy',$wishListItem->id) }}" method="post">
-
+                                <td class="action" data-title="Remove">
+                                    <a href="#" class="text-danger delete-item-form" onclick="event.preventDefault(); confirmDeletion()">
+                                        <i class="fi-rs-trash"></i>
+                                    </a>
+                                
+                                    <form action="{{ route('wishlist.destroy', $wishListItem->id) }}" method="post" id="deleteForm">
                                         @csrf
                                         @method('DELETE')
-
-                                        <button type="submit" data-title="Remove" class="btn btn-danger btn-sm bg-danger action" onclick="return confirm('Are you sure to delete?') ">
-                                            <i class="fi-rs-trash"></i>
-                                        </button>
-
                                     </form>
-
+                                </td>
+                                
 {{--
                                 </td>
 

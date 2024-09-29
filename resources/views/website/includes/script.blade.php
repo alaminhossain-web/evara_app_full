@@ -34,8 +34,10 @@
 <!-- sweet alert 2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    $(document).on('click', '.delete-item', function() {
-        event.preventDefault();
+    $(document).on('click', '.delete-item', function(event) {
+        event.preventDefault();  // Prevent the default action initially
+        
+        var deleteUrl = $(this).attr('href');  // Get the delete URL from the href attribute
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -46,11 +48,29 @@
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                document.getElementById("deleteItem").submit();
+                window.location.href = deleteUrl;
+               
             }
         });
-    })
+    });
+    function confirmDeletion() {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Submit the form if the user confirms
+                document.getElementById('deleteForm').submit();
+            }
+        });
+    }
 </script>
+
 @if (session('message'))
 <script>
     toastr.options = {
