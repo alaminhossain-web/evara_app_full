@@ -33,7 +33,7 @@
     });
 
     /*------ Wow Active ----*/
-    new WOW().init();
+    // new WOW().init();
 
     //sidebar sticky
     if ($('.sticky-sidebar').length) {

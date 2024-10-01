@@ -85,9 +85,9 @@
                 <div class="slider-arrow slider-arrow-2 carausel-6-columns-arrow" id="carausel-6-columns-arrows"></div>
                 <div class="carausel-6-columns" id="carausel-6-columns">
                     @foreach($categories as $category)
-                        <div class="card-1">
-                            <figure class="img-hover-scale overflow-hidden">
-                                <a href="#"><img src="{{ asset($category->image)}}" alt="" style="height: 150px;"></a>
+                        <div class="card-1" >
+                            <figure class="img-hover-scale overflow-hidden d-flex justify-content-center">
+                                <a href=""><img src="{{ asset($category->image)}}" alt="" height="150"></a>
                             </figure>
                             <h5><a href="{{route('product-category',['id' => $category->id])}}">{{($category->name)}}</a></h5>
                         </div>
@@ -97,8 +97,8 @@
         </div>
     </section>
     
-    <section class="product-tabs section-padding position-relative wow fadeIn animated">
-        <div class="bg-square"></div>
+    <section class="product-tabs section-padding position-relative  ">
+        {{-- <div class="bg-square"></div> --}}
         <div class="container">
             <div class="tab-header">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -284,7 +284,7 @@
                 @foreach ($product_offers as $product_offer)
                 <div class="col-lg-4 col-md-6">
                     <div class="banner-img wow fadeIn animated">
-                        <img src="{{ asset($product_offer->image) }}" height="200px" width="300px" alt="">
+                        <img src="{{ asset($product_offer->image) }}" height="250" alt="">
                         <div class="banner-text">
                             <span>{{ $product_offer->title_one }}</span>
                             <h4>{{ $product_offer->title_two }} <br>{{ $product_offer->title_three }}</h4>
@@ -680,22 +680,22 @@
             </div>
         </div>
     </section>
- <!-- Featured Section Start-->
- <section class="featured section-padding position-relative">
-    <div class="container">
-        <div class="row">
-           @foreach($features as $feature)
-            <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-                <div class="banner-features wow fadeIn animated hover-up">
-                    <img src="{{asset($feature->image)}}" alt="">
-                    <h4 class="bg-3">{{$feature->name}}</h4>
+    <!-- Featured Section Start-->
+    <section class="featured section-padding position-relative">
+        <div class="container">
+            <div class="row">
+            @foreach($features as $feature)
+                <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
+                    <div class="banner-features wow fadeIn animated hover-up">
+                        <img src="{{asset($feature->image)}}" alt="">
+                        <h4 class="bg-3">{{$feature->name}}</h4>
+                    </div>
                 </div>
+                @endforeach
             </div>
-            @endforeach
         </div>
-    </div>
-</section>
-<!-- Featured Section End-->
+    </section>
+    <!-- Featured Section End-->
     {{-- <section class="mb-45">
         <div class="container">
             <div class="row">
