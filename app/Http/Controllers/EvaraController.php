@@ -97,13 +97,15 @@ class EvaraController extends Controller
         }
 
         return view('website.product.index1', [
-            'product' => $this->product,
-            'category_products' => Product::where('category_id',$this->product->category_id)
-            ->orderBy('id','desc')
-            ->take(4)
-            ->get(['id','name','image','selling_price','regular_price']),
-            'discount'  => $this->discount,
+            'product' => $this->product, // Current product
+            'category_products' => Product::where('category_id', $this->product->category_id)
+                ->where('id', '!=', $this->product->id) // Exclude the current product
+                ->orderBy('id', 'desc')
+                ->take(4)
+                ->get(['id', 'name', 'image', 'selling_price', 'regular_price']), // Related products
+            'discount'  => $this->discount, // Discount information
         ]);
+        
     }
     
 }
