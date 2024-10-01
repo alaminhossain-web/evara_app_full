@@ -172,14 +172,14 @@
                                 div += '<div class="product-cart-wrap small hover-up col-md-4">';
                                     div += '<div class="product-img-action-wrap">';
                                         div += '<div class="product-img product-img-zoom">';
-                                            div += '<a href="http://localhost:8000/product-detail/'+value.id+'">';
+                                            div += '<a href="https://demo1.dengrweb.com/product-detail/'+value.id+'">';
                                                 div += '<img class="default-img" src="'+value.image+'"  height="250" alt=""/>';
                                                 div += '<img class="hover-img" src="'+value.image+'" height="250" alt=""/>';
                                             div += '</a>';
                                         div += '</div>';
                                     div += '</div>';
                                     div += '<div class="product-content-wrap">';
-                                        div += '<h2><a href="http://localhost:8000/product-detail/'+value.id+'"> '+value.name+' </a></h2>';
+                                        div += '<h2><a href="https://demo1.dengrweb.com/product-detail/'+value.id+'"> '+value.name+' </a></h2>';
                                         div += '<div class="rating-result" title="90%">';
                                             div += '<span></span>';
                                         div += '</div>';

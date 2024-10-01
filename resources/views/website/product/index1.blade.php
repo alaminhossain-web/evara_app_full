@@ -471,32 +471,30 @@
                                             <div class="product-cart-wrap small hover-up">
                                                 <div class="product-img-action-wrap">
                                                     <div class="product-img product-img-zoom">
-                                                        <a href="shop-product-right.html" tabindex="0">
+                                                        <a href="{{ route('product-detail',$category_product->id) }}" tabindex="0">
                                                             <img class="default-img"
                                                                 src="{{ asset($category_product->image) }}"
-                                                                alt="">
+                                                                alt="" height="250">
                                                             <img class="hover-img"
                                                                 src="{{ asset($category_product->image) }}"
-                                                                alt="">
+                                                                alt="" height="250">
                                                         </a>
                                                     </div>
                                                     <div class="product-action-1">
-                                                        <a aria-label="Quick view" class="action-btn small hover-up"
+                                                        {{-- <a aria-label="Quick view" class="action-btn small hover-up"
                                                             data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-                                                                class="fi-rs-search"></i></a>
+                                                                class="fi-rs-search"></i></a> --}}
                                                         <a aria-label="Add To Wishlist" class="action-btn small hover-up"
-                                                            href="shop-wishlist.html" tabindex="0"><i
+                                                            href="{{ route('wishlist.ad',$product->id) }}" tabindex="0"><i
                                                                 class="fi-rs-heart"></i></a>
-                                                        <a aria-label="Compare" class="action-btn small hover-up"
-                                                            href="shop-compare.html" tabindex="0"><i
-                                                                class="fi-rs-shuffle"></i></a>
+                                                       
                                                     </div>
                                                     <div class="product-badges product-badges-position product-badges-mrg">
                                                         <span class="hot">Hot</span>
                                                     </div>
                                                 </div>
                                                 <div class="product-content-wrap">
-                                                    <h2><a href="shop-product-right.html"
+                                                    <h2><a href="{{ route('product-detail',$category_product->id) }}"
                                                             tabindex="0">{{ $category_product->name }}</a></h2>
                                                     <div class="rating-result" title="90%">
                                                         <span>
