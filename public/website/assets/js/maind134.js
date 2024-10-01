@@ -1,13 +1,13 @@
 (function ($) {
     "use strict";
     // Page loading
-    $(window).on('load', function() {
-        $('#preloader-active').delay(450).fadeOut('slow');
-        $('body').delay(450).css({
-            'overflow': 'visible'
-        });
-        $("#onloadModal").modal('show');
-    });
+    // $(window).on('load', function() {
+    //     $('#preloader-active').delay(450).fadeOut('slow');
+    //     $('body').delay(450).css({
+    //         'overflow': 'visible'
+    //     });
+    //     $("#onloadModal").modal('show');
+    // });
     /*-----------------
         Menu Stick
     -----------------*/
@@ -454,14 +454,14 @@
         $('.zoomContainer').remove();
     });
 
-    $('#quickViewModal').on('show.bs.modal', function (e) {
-        $(document).click(function (e) {
-            var modalDialog = $('.modal-dialog');
-            if (!modalDialog.is(e.target) && modalDialog.has(e.target).length === 0) {
-                $('.zoomContainer').remove();
-            }
-        });
-    });
+    // $('#quickViewModal').on('show.bs.modal', function (e) {
+    //     $(document).click(function (e) {
+    //         var modalDialog = $('.modal-dialog');
+    //         if (!modalDialog.is(e.target) && modalDialog.has(e.target).length === 0) {
+    //             $('.zoomContainer').remove();
+    //         }
+    //     });
+    // });
 
     /*---------------------
         Select active
@@ -641,13 +641,13 @@
     })
 
     /*--- VSticker ----*/
-    $('#news-flash').vTicker({
-        speed: 500,
-        pause: 3000,
-        animation: 'fade',
-        mousePause: false,
-        showItems: 1
-    });
+    // $('#news-flash').vTicker({
+    //     speed: 500,
+    //     pause: 3000,
+    //     animation: 'fade',
+    //     mousePause: false,
+    //     showItems: 1
+    // });
 
 })(jQuery);
 

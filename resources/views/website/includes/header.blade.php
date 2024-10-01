@@ -179,9 +179,9 @@
                     <div class="text-center">
                         <div id="news-flash" class="d-inline-block">
                             <ul>
-                                <li>Get great devices up to 50% off <a href="shop-grid-right.html">View details</a></li>
+                                {{-- <li>Get great devices up to 50% off <a href="shop-grid-right.html">View details</a></li>
                                 <li>Supper Value Deals - Save more with coupons</li>
-                                <li>Trendy 25silver jewelry, save up 35% off today <a href="shop-grid-right.html">Shop now</a></li>
+                                <li>Trendy 25silver jewelry, save up 35% off today <a href="shop-grid-right.html">Shop now</a></li> --}}
                             </ul>
                         </div>
                     </div>
@@ -193,12 +193,8 @@
                                 <a class="language-dropdown-active" href="#"> <i class="fi-rs-world"></i> English <i
                                         class="fi-rs-angle-small-down"></i></a>
                                 <ul class="language-dropdown">
-                                    <li><a href="#"><img src="{{asset('/')}}website/assets/imgs/theme/flag-fr.png"
-                                                         alt="">Français</a></li>
-                                    <li><a href="#"><img src="{{asset('/')}}website/assets/imgs/theme/flag-dt.png"
-                                                         alt="">Deutsch</a></li>
-                                    <li><a href="#"><img src="{{asset('/')}}website/assets/imgs/theme/flag-ru.png"
-                                                         alt="">Pусский</a></li>
+                                    <li><a href="#"><img src="{{asset('/')}}website/assets/imgs/theme/"
+                                                         alt="">Bangla</a></li>
                                 </ul>
                             </li>
                             @if(Session::get('vendor_id'))
@@ -438,7 +434,7 @@
     <div class="mobile-header-wrapper-inner">
         <div class="mobile-header-top">
             <div class="mobile-header-logo">
-                <a href="/"><img src="{{asset('/')}}website/assets/imgs/theme/logo.svg" alt="logo"></a>
+                <a href="/"><img src="{{asset($setting->logo_png)}}" alt="logo"></a>
             </div>
             <div class="mobile-menu-close close-style-wrap close-style-position-inherit">
                 <button class="close-style search-close">
