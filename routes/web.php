@@ -1,40 +1,41 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\EvaraController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\BrandController;
-use App\Http\Controllers\SubCategoryController;
-use App\Http\Controllers\UnitController;
-use App\Http\Controllers\ColorController;
-use App\Http\Controllers\SizeController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ProductOfferController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\CustomerAuthController;
-use App\Http\Controllers\WishListController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\FeatureController;
-use App\Http\Controllers\CourierController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\AdController;
-use App\Http\Controllers\SettingController;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\SizeController;
+use App\Http\Controllers\UnitController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ColorController;
+use App\Http\Controllers\EvaraController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PagesController;
-use App\Http\Controllers\PurchaseGuideController;
-use App\Http\Controllers\ShippingPolicyController;
+use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\CourierController;
+use App\Http\Controllers\FeatureController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\WishListController;
+use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\CustomerAuthController;
+use App\Http\Controllers\ProductOfferController;
 use App\Http\Controllers\ReturnPolicyController;
 use App\Http\Controllers\PrivacyPolicyController;
-use App\Http\Controllers\TermsConditionController;
-use App\Http\Controllers\AboutUsController;
-use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\PurchaseGuideController;
+use App\Http\Controllers\ShippingPolicyController;
 
+use App\Http\Controllers\TermsConditionController;
+use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\Vendor\VendorAuthController;
-use App\Http\Controllers\Vendor\VendorProfileController;
 use App\Http\Controllers\Vendor\VendorProductController;
+use App\Http\Controllers\Vendor\VendorProfileController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -199,4 +200,13 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
 
 
+});
+// clear
+Route::get('clear', function () {
+    Artisan::call('config:clear');
+    Artisan::call('config:cache');
+    Artisan::call('view:clear');
+    Artisan::call('route:clear');
+    session()->flash('message', 'Successfully Clear.'); 
+    return back();
 });
