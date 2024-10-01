@@ -35,10 +35,10 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $(document).on('click', '.delete-item', function(event) {
-        event.preventDefault();  // Prevent the default action initially
+        event.preventDefault();  
         
-        var deleteUrl = $(this).attr('href');  // Get the delete URL from the href attribute
-        Swal.fire({
+        var deleteUrl = $(this).attr('href');  
+            Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
             icon: "warning",
@@ -152,8 +152,9 @@
 </script>
 
 <script>
-    $('#searchText').keyup(function () {
+    $('.searchText').keyup(function () {
         var searchText = $(this).val();
+       
         $.ajax({
             type: "GET",
             url: "{{ route('get-product-by-search-text') }}",
@@ -171,14 +172,14 @@
                                 div += '<div class="product-cart-wrap small hover-up col-md-4">';
                                     div += '<div class="product-img-action-wrap">';
                                         div += '<div class="product-img product-img-zoom">';
-                                            div += '<a href="http://localhost/evara/public/product-detail/'+value.id+'">';
-                                                div += '<img class="default-img" src="'+value.image+'"  height="200" alt=""/>';
-                                                div += '<img class="hover-img" src="'+value.image+'" height="200" alt=""/>';
+                                            div += '<a href="http://localhost:8000/product-detail/'+value.id+'">';
+                                                div += '<img class="default-img" src="'+value.image+'"  height="250" alt=""/>';
+                                                div += '<img class="hover-img" src="'+value.image+'" height="250" alt=""/>';
                                             div += '</a>';
                                         div += '</div>';
                                     div += '</div>';
                                     div += '<div class="product-content-wrap">';
-                                        div += '<h2><a href=""> '+value.name+' </a></h2>';
+                                        div += '<h2><a href="http://localhost:8000/product-detail/'+value.id+'"> '+value.name+' </a></h2>';
                                         div += '<div class="rating-result" title="90%">';
                                             div += '<span></span>';
                                         div += '</div>';

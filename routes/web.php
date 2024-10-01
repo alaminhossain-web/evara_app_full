@@ -50,6 +50,8 @@ use App\Http\Controllers\Vendor\VendorProfileController;
 
 Route::get('/', [EvaraController::class,'index'])->name('home');
 //Route::get('/product-category', [EvaraController::class,'category'])->name('product-category');
+Route::get('/product-all', [EvaraController::class,'products'])->name('products');
+
 Route::get('/product-category/{id}', [EvaraController::class,'category'])->name('product-category');
 Route::get('/product-sub-category/{id}', [EvaraController::class,'subCategory'])->name('product-sub-category');
 //Route::get('/product-detail', [EvaraController::class,'product'])->name('product-detail');
@@ -192,14 +194,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::resource('terms-condition-form', TermsConditionController::class);
     Route::resource('about-us-form', AboutUsController::class);
     Route::resource('contact-us-form', ContactUsController::class);
-
-
-
-
-
-
-
-
 });
 // clear
 Route::get('clear', function () {
@@ -207,6 +201,7 @@ Route::get('clear', function () {
     Artisan::call('config:cache');
     Artisan::call('view:clear');
     Artisan::call('route:clear');
+    Artisan::call('optimize:clear');
     session()->flash('message', 'Successfully Clear.'); 
     return back();
 });

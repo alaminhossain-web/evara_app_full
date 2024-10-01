@@ -60,10 +60,6 @@
         <div class="container-login100">
             <div class="wrap-login100 p-0">
                 <div class="card-body">
-
-{{--                    @if()--}}
-{{--                        --}}
-{{--                    @endif--}}
                     <form action="{{route('login')}}" method="post" class="login100-form validate-form">
 
                         @csrf

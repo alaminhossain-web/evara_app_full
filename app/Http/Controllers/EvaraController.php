@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Feature;
 use App\Models\Product;
 use App\Models\ProductOffer;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
 class EvaraController extends Controller
@@ -37,29 +38,46 @@ class EvaraController extends Controller
 
       ]);
     }
+    public function products()
+    {
+        //        return 'ok';
 
+        
+        return view('website.category.index1', [
+            // Fetch products with pagination
+            'products' => Product::orderBy('id', 'desc')
+                ->paginate(8, ['id', 'name', 'category_id', 'image', 'regular_price', 'selling_price']),
+                
+            // Fetch categories with the count of related products
+            'categories' => Category::with('products')->get(),
+        ]);
+       
+        
+        
+    }
     public function category($id)
     {
         //        return 'ok';
-        return view('website.category.index',[
-            'products' => Product::where('category_id',$id)
-                ->orderBy('id','desc')
-                ->get(['id','name','image','regular_price','selling_price']),
 
+        return view('website.category.index1', [
+            'products' => Product::where('category_id', $id)
+                ->orderBy('id', 'desc')
+                ->paginate(8, ['id', 'name', 'image', 'regular_price', 'selling_price']),
             'categories' => Category::all(),
-
+            'category' => Category::findOrFail($id), 
         ]);
+        
     }
 
 
     public function subCategory($id)
     {
-        return view('website.category.index',[
-            'products' => Product::where('sub_category_id',$id)
-                ->orderBy('id','desc')
-                ->get(['id','name','image','regular_price','selling_price']),
-
+        return view('website.category.index1',[
+            'products' => Product::where('category_id', $id)
+            ->orderBy('id', 'desc')
+            ->paginate(8, ['id', 'name', 'image', 'regular_price', 'selling_price']),
             'categories' => Category::all(),
+            'category' => SubCategory::findOrFail($id)
 
         ]);
     }

@@ -9,6 +9,7 @@ use App\Models\Setting;
 use App\Models\Category;
 Use Illuminate\Support\Facades\Session;
 use App\Models\WishList;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -27,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Paginator::useBootstrap();
         View::composer(['website.master'],function ($view){
             $view->with('categories',Category::all());
             $view->with('wishlists',WishList::where('customer_id',Session::get('customer_id'))

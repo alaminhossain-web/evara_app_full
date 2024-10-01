@@ -17,7 +17,7 @@
 
 @include('website.includes.header')
 
-<main class="main">
+<main class="main" id="mainContainer">
 
    @yield('body')
 

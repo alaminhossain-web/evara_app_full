@@ -1,6 +1,6 @@
 
 
-@if(\Request::route()->getname() == "home1")
+{{-- @if(\Request::route()->getname() == "home1") --}}
 
 <!-- Modal -->
 {{-- <div class="modal fade custom-modal" id="onloadModal" tabindex="-1" aria-labelledby="onloadModalLabel" aria-hidden="true">
@@ -28,7 +28,7 @@
     </div>
 </div> --}}
 
-@endif
+{{-- @endif --}}
 <!-- Quick view -->
 {{-- <div class="modal fade custom-modal" id="quickViewModal" tabindex="-1" aria-labelledby="quickViewModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -170,7 +170,7 @@
                     <div class="header-info">
                         <ul>
                             <li><i class="fi-rs-smartphone"></i> <a href="#">{{$setting->contact_phone}}</a></li>
-                            <li><i class="fi-rs-marker"></i><a  href="">Our location</a></li>
+                            {{-- <li><i class="fi-rs-marker"></i><a  href="">Our location</a></li> --}}
                         </ul>
                     </div>
                 </div>
@@ -189,14 +189,14 @@
                 <div class="col-xl-3 col-lg-4">
                     <div class="header-info header-info-right">
                         <ul>
-                            <li>
+                            {{-- <li>
                                 <a class="language-dropdown-active" href="#"> <i class="fi-rs-world"></i> English <i
                                         class="fi-rs-angle-small-down"></i></a>
                                 <ul class="language-dropdown">
                                     <li><a href="#"><img src="{{asset('/')}}website/assets/imgs/theme/"
                                                          alt="">Bangla</a></li>
                                 </ul>
-                            </li>
+                            </li> --}}
                             @if(Session::get('vendor_id'))
                                 <li>
                                     <a class="language-dropdown-active" href="#"> <i
@@ -243,8 +243,8 @@
                 <div class="header-right">
 
                     <div class="search-style-2">
-                        <form action="#">
-                            <input type="text" id="searchText" placeholder="Search for items..."/>
+                        <form >
+                            <input type="text" class="searchText" placeholder="Search for items..."/>
                         </form>
                     </div>
                     <div class="header-action-right">
@@ -343,7 +343,7 @@
                         <nav>
                             <ul>
                                 <li>
-                                    <a class="active" href="{{route('home')}}">Home</a>
+                                    <a class="" href="{{route('home')}}">Home</a>
                                 </li>
                                 <li>
                                     <a href="{{route('purchase-guide')}}">Purchase Guide</a>
@@ -361,10 +361,10 @@
                         </nav>
                     </div>
                 </div>
-                <div class="hotline d-none d-lg-block">
+                {{-- <div class="hotline d-none d-lg-block">
                     <p><i class="fi-rs-headset"></i><span>Hotline</span> 1900 - 888 </p>
-                </div>
-                <p class="mobile-promotion">Happy <span class="text-brand">Mother's Day</span>. Big Sale Up to 40%</p>
+                </div> --}}
+                {{-- <p class="mobile-promotion">Happy <span class="text-brand">Mother's Day</span>. Big Sale Up to 40%</p> --}}
                 <div class="header-action-right d-block d-lg-none">
                     <div class="header-action-2">
                         <div class="header-action-icon-2">
@@ -445,9 +445,9 @@
         </div>
         <div class="mobile-header-content-area">
             <div class="mobile-search search-style-3 mobile-header-border">
-                <form action="#">
-                    <input type="text" placeholder="Search for items…">
-                    <button type="submit"><i class="fi-rs-search"></i></button>
+                <form >
+                    <input type="text" class="searchText" placeholder="Search for items…" >
+                    {{-- <button type="submit"><i class="fi-rs-search"></i></button> --}}
                 </form>
             </div>
             <div class="mobile-menu-wrap mobile-header-border">
@@ -457,79 +457,23 @@
                     </a>
                     <div class="categori-dropdown-wrap categori-dropdown-active-small">
                         <ul>
-                            <li><a href="shop-grid-right.html"><i class="evara-font-dress"></i>Women's Clothing</a></li>
-                            <li><a href="shop-grid-right.html"><i class="evara-font-tshirt"></i>Men's Clothing</a></li>
-                            <li> <a href="shop-grid-right.html"><i class="evara-font-smartphone"></i> Cellphones</a></li>
-                            <li><a href="shop-grid-right.html"><i class="evara-font-desktop"></i>Computer & Office</a></li>
-                            <li><a href="shop-grid-right.html"><i class="evara-font-cpu"></i>Consumer Electronics</a></li>
-                            <li><a href="shop-grid-right.html"><i class="evara-font-home"></i>Home & Garden</a></li>
-                            <li><a href="shop-grid-right.html"><i class="evara-font-high-heels"></i>Shoes</a></li>
-                            <li><a href="shop-grid-right.html"><i class="evara-font-teddy-bear"></i>Mother & Kids</a></li>
-                            <li><a href="shop-grid-right.html"><i class="evara-font-kite"></i>Outdoor fun</a></li>
+                            @foreach($categories->take(6) as $category)
+                            <li><a href="{{route('product-category',['id' => $category->id])}}"><i class="fa fa-arrow-right"></i>{{ $category->name }}</a></li>
+                           @endforeach
+                            
                         </ul>
                     </div>
                 </div>
                 <!-- mobile menu start -->
                 <nav>
                     <ul class="mobile-menu">
-                        <li class="menu-item-has-children"><span class="menu-expand"></span><a href="index-2.html">Home</a>
-                            <ul class="dropdown">
-                                <li><a href="index-2.html">Home 1</a></li>
-                                <li><a href="index-3.html">Home 2</a></li>
-                                <li><a href="index-4.html">Home 3</a></li>
-                                <li><a href="index-5.html">Home 4</a></li>
-                            </ul>
+                        <li class="menu-item"><a href="{{ route('home') }}">Home</a>
                         </li>
-                        <li class="menu-item-has-children"><span class="menu-expand"></span><a href="shop-grid-right.html">shop</a>
-                            <ul class="dropdown">
-                                <li><a href="shop-grid-right.html">Shop Grid – Right Sidebar</a></li>
-                                <li><a href="shop-grid-left.html">Shop Grid – Left Sidebar</a></li>
-                                <li><a href="shop-list-right.html">Shop List – Right Sidebar</a></li>
-                                <li><a href="shop-list-left.html">Shop List – Left Sidebar</a></li>
-                                <li><a href="shop-fullwidth.html">Shop - Wide</a></li>
-                                <li class="menu-item-has-children"><span class="menu-expand"></span><a href="#">Single Product</a>
-                                    <ul class="dropdown">
-                                        <li><a href="shop-product-right.html">Product – Right Sidebar</a></li>
-                                        <li><a href="shop-product-left.html">Product – Left Sidebar</a></li>
-                                        <li><a href="shop-product-full.html">Product – No sidebar</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="shop-filter.html">Shop – Filter</a></li>
-                                <li><a href="shop-wishlist.html">Shop – Wishlist</a></li>
-                                <li><a href="shop-cart.html">Shop – Cart</a></li>
-                                <li><a href="shop-checkout.html">Shop – Checkout</a></li>
-                                <li><a href="shop-compare.html">Shop – Compare</a></li>
-                            </ul>
+                        <li class="menu-item"><a href="{{ route('products') }}">Shop</a>
                         </li>
-                        <li class="menu-item-has-children"><span class="menu-expand"></span><a href="#">Mega menu</a>
-                            <ul class="dropdown">
-                                <li class="menu-item-has-children"><span class="menu-expand"></span><a href="#">Women's Fashion</a>
-                                    <ul class="dropdown">
-                                        <li><a href="shop-product-right.html">Dresses</a></li>
-                                        <li><a href="shop-product-right.html">Blouses & Shirts</a></li>
-                                        <li><a href="shop-product-right.html">Hoodies & Sweatshirts</a></li>
-                                        <li><a href="shop-product-right.html">Women's Sets</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item-has-children"><span class="menu-expand"></span><a href="#">Men's Fashion</a>
-                                    <ul class="dropdown">
-                                        <li><a href="shop-product-right.html">Jackets</a></li>
-                                        <li><a href="shop-product-right.html">Casual Faux Leather</a></li>
-                                        <li><a href="shop-product-right.html">Genuine Leather</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item-has-children"><span class="menu-expand"></span><a href="#">Technology</a>
-                                    <ul class="dropdown">
-                                        <li><a href="shop-product-right.html">Gaming Laptops</a></li>
-                                        <li><a href="shop-product-right.html">Ultraslim Laptops</a></li>
-                                        <li><a href="shop-product-right.html">Tablets</a></li>
-                                        <li><a href="shop-product-right.html">Laptop Accessories</a></li>
-                                        <li><a href="shop-product-right.html">Tablet Accessories</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="menu-item-has-children"><span class="menu-expand"></span><a href="blog-category-fullwidth.html">Blog</a>
+                        <li class="menu-item"><a href="{{ route('about') }}">About Us</a></li>
+                        <li class="menu-item"><a href="{{ route('contact') }}">Contact Us</a></li>
+                        {{-- <li class="menu-item-has-children"><span class="menu-expand"></span><a href="blog-category-fullwidth.html">Blog</a>
                             <ul class="dropdown">
                                 <li><a href="blog-category-grid.html">Blog Category Grid</a></li>
                                 <li><a href="blog-category-list.html">Blog Category List</a></li>
@@ -543,49 +487,54 @@
                                     </ul>
                                 </li>
                             </ul>
-                        </li>
-                        <li class="menu-item-has-children"><span class="menu-expand"></span><a href="#">Pages</a>
-                            <ul class="dropdown">
-                                <li><a href="page-about.html">About Us</a></li>
-                                <li><a href="page-contact.html">Contact</a></li>
-                                <li><a href="page-account.html">My Account</a></li>
-                                <li><a href="page-login-register.html">login/register</a></li>
-                                <li><a href="page-purchase-guide.html">Purchase Guide</a></li>
-                                <li><a href="page-privacy-policy.html">Privacy Policy</a></li>
-                                <li><a href="page-terms.html">Terms of Service</a></li>
-                                <li><a href="page-404.html">404 Page</a></li>
-                            </ul>
-                        </li>
-                        <li class="menu-item-has-children"><span class="menu-expand"></span><a href="#">Language</a>
-                            <ul class="dropdown">
-                                <li><a href="#">English</a></li>
-                                <li><a href="#">French</a></li>
-                                <li><a href="#">German</a></li>
-                                <li><a href="#">Spanish</a></li>
-                            </ul>
-                        </li>
+                        </li> --}}
                     </ul>
                 </nav>
                 <!-- mobile menu end -->
             </div>
             <div class="mobile-header-info-wrap mobile-header-border">
-                <div class="single-mobile-header-info mt-30">
-                    <a  href="page-contact.html"> Our location </a>
-                </div>
-                <div class="single-mobile-header-info">
-                    <a href="page-login-register.html">Log In / Sign Up </a>
-                </div>
-                <div class="single-mobile-header-info">
-                    <a href="#">(+01) - 2345 - 6789 </a>
-                </div>
+                {{-- <div class="single-mobile-header-info mt-30">
+                    <a  href="page-contact.html"> Our location: {{$setting->company_address}} </a>
+                </div> --}}
+                @if(Session::get('vendor_id'))
+                               
+                                    <a href="javascript:void(0);" > <i
+                                        class="fi-rs-user"></i> {{Session::get('vendor_name')}}</a>
+                                    <div class="single-mobile-header-info">
+                                        <a href="{{ route('vendor.dashboard') }}"><i class="fi-rs-home"></i> Dashboard</a>
+                                    </div>
+                                    <div class="single-mobile-header-info">
+                                        <a href="{{route('vendor.logout')}}"><i class="fi-rs-lock"></i> Logout</a>
+                                    </div>
+                               
+                            @else
+                                @if(Session::get('customer_id'))
+                                <a href="javascript:void(0);" > <i
+                                    class="fi-rs-user"></i> {{Session::get('customer_name')}}</a>
+                                    
+                                    <div class="single-mobile-header-info">
+                                        <a href="{{ route('customer.dashboard') }}"><i class="fi-rs-home"></i> Dashboard</a>
+                                    </div>
+                                    <div class="single-mobile-header-info">
+                                        <a href="{{route('customer-logout')}}"><i class="fi-rs-lock"></i> Logout</a>
+                                    </div>
+                                @else
+                                <div class="single-mobile-header-info">
+                                    <a href="{{ route('login-register') }}">Log In / Sign Up </a>
+                                </div>
+                                @endif
+                            @endif
+                {{-- <div class="single-mobile-header-info">
+                    <a href="tel:{{$setting->support_phone}}">{{$setting->support_phone}}</a>
+                </div> --}}
             </div>
             <div class="mobile-social-icon">
                 <h5 class="mb-15 text-grey-4">Follow Us</h5>
-                <a href="#"><img src="{{asset('/')}}website/assets/imgs/theme/icons/icon-facebook.svg" alt=""></a>
-                <a href="#"><img src="{{asset('/')}}website/assets/imgs/theme/icons/icon-twitter.svg" alt=""></a>
-                <a href="#"><img src="{{asset('/')}}website/assets/imgs/theme/icons/icon-instagram.svg" alt=""></a>
-                <a href="#"><img src="{{asset('/')}}website/assets/imgs/theme/icons/icon-pinterest.svg" alt=""></a>
-                <a href="#"><img src="{{asset('/')}}website/assets/imgs/theme/icons/icon-youtube.svg" alt=""></a>
+                <a href="{{$setting->facebook_url}}"><img src="{{asset('/')}}website/assets/imgs/theme/icons/icon-facebook.svg" alt=""></a>
+                <a href="{{$setting->twitter_link}}"><img src="{{asset('/')}}website/assets/imgs/theme/icons/icon-twitter.svg" alt=""></a>
+                <a href="{{$setting->instagram_link}}"><img src="{{asset('/')}}website/assets/imgs/theme/icons/icon-instagram.svg" alt=""></a>
+                <a href="{{$setting->linkedin_link}}"><img src="{{asset('/')}}website/assets/imgs/theme/icons/icon-pinterest.svg" alt=""></a>
+                <a href="{{$setting->youtube_link}}"><img src="{{asset('/')}}website/assets/imgs/theme/icons/icon-youtube.svg" alt=""></a>
             </div>
         </div>
     </div>
