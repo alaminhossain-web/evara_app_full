@@ -24,14 +24,9 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h3 class="mb-2 fw-semibold">1,12,324</h3>
-                            <p class="text-muted fs-13 mb-0">Daily Visitors</p>
-                            <p class="text-muted mb-0 mt-2 fs-12">
-                                                        <span class="icn-box text-success fw-semibold fs-13 me-1">
-                                                            <i class='fa fa-long-arrow-up'></i>
-                                                            42%</span>
-                                since last month
-                            </p>
+                            <h3 class="mb-2 fw-semibold">{{ $customerCount }}</h3>
+                            <p class="text-muted fs-13 mb-0">Total Customers</p>
+                           
                         </div>
                         <div class="col col-auto top-icn dash">
                             <div class="counter-icon bg-primary dash ms-auto box-shadow-primary">
@@ -47,37 +42,14 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h3 class="mb-2 fw-semibold">12,563</h3>
-                            <p class="text-muted fs-13 mb-0">Total Orders</p>
-                            <p class="text-muted mb-0 mt-2 fs-12">
-                                                        <span class="icn-box text-danger fw-semibold fs-13 me-1">
-                                                            <i class='fa fa-long-arrow-down'></i>
-                                                            12%</span>
-                                since last month
-                            </p>
-                        </div>
-                        <div class="col col-auto top-icn dash">
-                            <div class="counter-icon bg-secondary dash ms-auto box-shadow-secondary">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="fill-white" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path d="M19.5,7H16V5.9169922c0-2.2091064-1.7908325-4-4-4s-4,1.7908936-4,4V7H4.5C4.4998169,7,4.4996338,7,4.4993896,7C4.2234497,7.0001831,3.9998169,7.223999,4,7.5V19c0.0018311,1.6561279,1.3438721,2.9981689,3,3h10c1.6561279-0.0018311,2.9981689-1.3438721,3-3V7.5c0-0.0001831,0-0.0003662,0-0.0006104C19.9998169,7.2234497,19.776001,6.9998169,19.5,7z M9,5.9169922c0-1.6568604,1.3431396-3,3-3s3,1.3431396,3,3V7H9V5.9169922z M19,19c-0.0014038,1.1040039-0.8959961,1.9985962-2,2H7c-1.1040039-0.0014038-1.9985962-0.8959961-2-2V8h3v2.5C8,10.776123,8.223877,11,8.5,11S9,10.776123,9,10.5V8h6v2.5c0,0.0001831,0,0.0003662,0,0.0005493C15.0001831,10.7765503,15.223999,11.0001831,15.5,11c0.0001831,0,0.0003662,0,0.0006104,0C15.7765503,10.9998169,16.0001831,10.776001,16,10.5V8h3V19z"/></svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 col-sm-12 col-md-6 col-xl-3">
-            <div class="card overflow-hidden">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                            <h3 class="mb-2 fw-semibold">$5,178</h3>
-                            <p class="text-muted fs-13 mb-0">Conversion Rate</p>
-                            <p class="text-muted mb-0 mt-2 fs-12">
+                            <h3 class="mb-2 fw-semibold">{{ $productCount }}</h3>
+                            <p class="text-muted fs-13 mb-0">Total Products</p>
+                            {{-- <p class="text-muted mb-0 mt-2 fs-12">
                                                         <span class="icn-box text-success fw-semibold fs-13 me-1">
                                                             <i class='fa fa-long-arrow-up'></i>
                                                             27%</span>
                                 since last month
-                            </p>
+                            </p> --}}
                         </div>
                         <div class="col col-auto top-icn dash">
                             <div class="counter-icon bg-info dash ms-auto box-shadow-info">
@@ -93,14 +65,109 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h3 class="mb-2 fw-semibold">$43,987</h3>
-                            <p class="text-muted fs-13 mb-0">Avg Orders</p>
-                            <p class="text-muted mb-0 mt-2 fs-12">
+                            <h3 class="mb-2 fw-semibold">{{ $orderCount }}</h3>
+                            <p class="text-muted fs-13 mb-0">Total Orders</p>
+                           
+                        </div>
+                        <div class="col col-auto top-icn dash">
+                            <div class="counter-icon bg-secondary dash ms-auto box-shadow-secondary">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="fill-white" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path d="M19.5,7H16V5.9169922c0-2.2091064-1.7908325-4-4-4s-4,1.7908936-4,4V7H4.5C4.4998169,7,4.4996338,7,4.4993896,7C4.2234497,7.0001831,3.9998169,7.223999,4,7.5V19c0.0018311,1.6561279,1.3438721,2.9981689,3,3h10c1.6561279-0.0018311,2.9981689-1.3438721,3-3V7.5c0-0.0001831,0-0.0003662,0-0.0006104C19.9998169,7.2234497,19.776001,6.9998169,19.5,7z M9,5.9169922c0-1.6568604,1.3431396-3,3-3s3,1.3431396,3,3V7H9V5.9169922z M19,19c-0.0014038,1.1040039-0.8959961,1.9985962-2,2H7c-1.1040039-0.0014038-1.9985962-0.8959961-2-2V8h3v2.5C8,10.776123,8.223877,11,8.5,11S9,10.776123,9,10.5V8h6v2.5c0,0.0001831,0,0.0003662,0,0.0005493C15.0001831,10.7765503,15.223999,11.0001831,15.5,11c0.0001831,0,0.0003662,0,0.0006104,0C15.7765503,10.9998169,16.0001831,10.776001,16,10.5V8h3V19z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-12 col-md-6 col-xl-3">
+            <div class="card overflow-hidden">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h3 class="mb-2 fw-semibold">{{ $orderPendingCount }}</h3>
+                            <p class="text-muted fs-13 mb-0">Total Pending Orders</p>
+                           
+                        </div>
+                        <div class="col col-auto top-icn dash">
+                            <div class="counter-icon bg-secondary dash ms-auto box-shadow-secondary">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="fill-white" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path d="M19.5,7H16V5.9169922c0-2.2091064-1.7908325-4-4-4s-4,1.7908936-4,4V7H4.5C4.4998169,7,4.4996338,7,4.4993896,7C4.2234497,7.0001831,3.9998169,7.223999,4,7.5V19c0.0018311,1.6561279,1.3438721,2.9981689,3,3h10c1.6561279-0.0018311,2.9981689-1.3438721,3-3V7.5c0-0.0001831,0-0.0003662,0-0.0006104C19.9998169,7.2234497,19.776001,6.9998169,19.5,7z M9,5.9169922c0-1.6568604,1.3431396-3,3-3s3,1.3431396,3,3V7H9V5.9169922z M19,19c-0.0014038,1.1040039-0.8959961,1.9985962-2,2H7c-1.1040039-0.0014038-1.9985962-0.8959961-2-2V8h3v2.5C8,10.776123,8.223877,11,8.5,11S9,10.776123,9,10.5V8h6v2.5c0,0.0001831,0,0.0003662,0,0.0005493C15.0001831,10.7765503,15.223999,11.0001831,15.5,11c0.0001831,0,0.0003662,0,0.0006104,0C15.7765503,10.9998169,16.0001831,10.776001,16,10.5V8h3V19z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-12 col-md-6 col-xl-3">
+            <div class="card overflow-hidden">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h3 class="mb-2 fw-semibold">{{ $orderConfirmCount }}</h3>
+                            <p class="text-muted fs-13 mb-0">Total Confirmed Orders</p>
+                           
+                        </div>
+                        <div class="col col-auto top-icn dash">
+                            <div class="counter-icon bg-secondary dash ms-auto box-shadow-secondary">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="fill-white" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path d="M19.5,7H16V5.9169922c0-2.2091064-1.7908325-4-4-4s-4,1.7908936-4,4V7H4.5C4.4998169,7,4.4996338,7,4.4993896,7C4.2234497,7.0001831,3.9998169,7.223999,4,7.5V19c0.0018311,1.6561279,1.3438721,2.9981689,3,3h10c1.6561279-0.0018311,2.9981689-1.3438721,3-3V7.5c0-0.0001831,0-0.0003662,0-0.0006104C19.9998169,7.2234497,19.776001,6.9998169,19.5,7z M9,5.9169922c0-1.6568604,1.3431396-3,3-3s3,1.3431396,3,3V7H9V5.9169922z M19,19c-0.0014038,1.1040039-0.8959961,1.9985962-2,2H7c-1.1040039-0.0014038-1.9985962-0.8959961-2-2V8h3v2.5C8,10.776123,8.223877,11,8.5,11S9,10.776123,9,10.5V8h6v2.5c0,0.0001831,0,0.0003662,0,0.0005493C15.0001831,10.7765503,15.223999,11.0001831,15.5,11c0.0001831,0,0.0003662,0,0.0006104,0C15.7765503,10.9998169,16.0001831,10.776001,16,10.5V8h3V19z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-12 col-md-6 col-xl-3">
+            <div class="card overflow-hidden">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h3 class="mb-2 fw-semibold">${{ $orderTotal ?? null }}</h3>
+                            <p class="text-muted fs-13 mb-0">Total Orders Amount</p>
+                            {{-- <p class="text-muted mb-0 mt-2 fs-12">
                                                         <span class="icn-box text-success fw-semibold fs-13 me-1">
                                                             <i class='fa fa-long-arrow-up'></i>
-                                                            9%</span>
+                                                            {{ round($percentageChange,2) }}%</span>
                                 since last month
-                            </p>
+                            </p> --}}
+                        </div>
+                        <div class="col col-auto top-icn dash">
+                            <div class="counter-icon bg-warning dash ms-auto box-shadow-warning">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="fill-white" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path d="M9,10h2.5c0.276123,0,0.5-0.223877,0.5-0.5S11.776123,9,11.5,9H10V8c0-0.276123-0.223877-0.5-0.5-0.5S9,7.723877,9,8v1c-1.1045532,0-2,0.8954468-2,2s0.8954468,2,2,2h1c0.5523071,0,1,0.4476929,1,1s-0.4476929,1-1,1H7.5C7.223877,15,7,15.223877,7,15.5S7.223877,16,7.5,16H9v1.0005493C9.0001831,17.2765503,9.223999,17.5001831,9.5,17.5h0.0006104C9.7765503,17.4998169,10.0001831,17.276001,10,17v-1c1.1045532,0,2-0.8954468,2-2s-0.8954468-2-2-2H9c-0.5523071,0-1-0.4476929-1-1S8.4476929,10,9,10z M21.5,12H17V2.5c0.000061-0.0875244-0.0228882-0.1735229-0.0665283-0.2493896c-0.1375732-0.2393188-0.4431152-0.3217773-0.6824951-0.1842041l-3.2460327,1.8603516L9.7481079,2.0654297c-0.1536865-0.0878906-0.3424072-0.0878906-0.4960938,0l-3.256897,1.8613281L2.7490234,2.0664062C2.6731567,2.0227661,2.5871582,1.9998779,2.4996338,1.9998779C2.2235718,2.000061,1.9998779,2.223938,2,2.5v17c0.0012817,1.380188,1.119812,2.4987183,2.5,2.5H19c1.6561279-0.0018311,2.9981689-1.3438721,3-3v-6.5006104C21.9998169,12.2234497,21.776001,11.9998169,21.5,12z M4.5,21c-0.828064-0.0009155-1.4990845-0.671936-1.5-1.5V3.3623047l2.7412109,1.5712891c0.1575928,0.0872192,0.348877,0.0875854,0.5068359,0.0009766L9.5,3.0761719l3.2519531,1.8583984c0.157959,0.0866089,0.3492432,0.0862427,0.5068359-0.0009766L16,3.3623047V19c0.0008545,0.7719116,0.3010864,1.4684448,0.7803345,2H4.5z M21,19c0,1.1045532-0.8954468,2-2,2s-2-0.8954468-2-2v-6h4V19z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-12 col-md-6 col-xl-3">
+            <div class="card overflow-hidden">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h3 class="mb-2 fw-semibold">${{ $pendingTotal ?? null }}</h3>
+                            <p class="text-muted fs-13 mb-0">Pending Orders Amount</p>
+                            {{-- <p class="text-muted mb-0 mt-2 fs-12">
+                                                        <span class="icn-box text-success fw-semibold fs-13 me-1">
+                                                            <i class='fa fa-long-arrow-up'></i>
+                                                            {{ round($percentageChange,2) }}%</span>
+                                since last month
+                            </p> --}}
+                        </div>
+                        <div class="col col-auto top-icn dash">
+                            <div class="counter-icon bg-warning dash ms-auto box-shadow-warning">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="fill-white" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path d="M9,10h2.5c0.276123,0,0.5-0.223877,0.5-0.5S11.776123,9,11.5,9H10V8c0-0.276123-0.223877-0.5-0.5-0.5S9,7.723877,9,8v1c-1.1045532,0-2,0.8954468-2,2s0.8954468,2,2,2h1c0.5523071,0,1,0.4476929,1,1s-0.4476929,1-1,1H7.5C7.223877,15,7,15.223877,7,15.5S7.223877,16,7.5,16H9v1.0005493C9.0001831,17.2765503,9.223999,17.5001831,9.5,17.5h0.0006104C9.7765503,17.4998169,10.0001831,17.276001,10,17v-1c1.1045532,0,2-0.8954468,2-2s-0.8954468-2-2-2H9c-0.5523071,0-1-0.4476929-1-1S8.4476929,10,9,10z M21.5,12H17V2.5c0.000061-0.0875244-0.0228882-0.1735229-0.0665283-0.2493896c-0.1375732-0.2393188-0.4431152-0.3217773-0.6824951-0.1842041l-3.2460327,1.8603516L9.7481079,2.0654297c-0.1536865-0.0878906-0.3424072-0.0878906-0.4960938,0l-3.256897,1.8613281L2.7490234,2.0664062C2.6731567,2.0227661,2.5871582,1.9998779,2.4996338,1.9998779C2.2235718,2.000061,1.9998779,2.223938,2,2.5v17c0.0012817,1.380188,1.119812,2.4987183,2.5,2.5H19c1.6561279-0.0018311,2.9981689-1.3438721,3-3v-6.5006104C21.9998169,12.2234497,21.776001,11.9998169,21.5,12z M4.5,21c-0.828064-0.0009155-1.4990845-0.671936-1.5-1.5V3.3623047l2.7412109,1.5712891c0.1575928,0.0872192,0.348877,0.0875854,0.5068359,0.0009766L9.5,3.0761719l3.2519531,1.8583984c0.157959,0.0866089,0.3492432,0.0862427,0.5068359-0.0009766L16,3.3623047V19c0.0008545,0.7719116,0.3010864,1.4684448,0.7803345,2H4.5z M21,19c0,1.1045532-0.8954468,2-2,2s-2-0.8954468-2-2v-6h4V19z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-12 col-md-6 col-xl-3">
+            <div class="card overflow-hidden">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h3 class="mb-2 fw-semibold">${{ $confirmedTotal ?? null }}</h3>
+                            <p class="text-muted fs-13 mb-0">Confirmed Orders Amount</p>
+                            
                         </div>
                         <div class="col col-auto top-icn dash">
                             <div class="counter-icon bg-warning dash ms-auto box-shadow-warning">
@@ -115,7 +182,7 @@
     <!-- ROW-1 END-->
 
     <!-- ROW-2 -->
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-sm-12 col-md-12 col-xl-4 col-lg-6">
             <div class="row">
                 <div class="col-lg-12 col-xl-12 col-md-6 col-sm-12">
@@ -289,221 +356,12 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- ROW-2 END -->
 
-    <!-- ROW-3 -->
-    <div class="row">
-        <div class="col-xl-4 col-md-12">
-            <div class="card">
-                <div class="card-header border-bottom">
-                    <h4 class="card-title fw-semibold">Daily Activity</h4>
-                </div>
-                <div class="card-body pb-0">
-                    <ul class="task-list">
-                        <li>
-                            <i class="task-icon bg-primary"></i>
-                            <p class="fw-semibold mb-1 fs-13">New Products Introduced<span class="text-muted fs-12 ms-2 ms-auto float-end">1:43 pm</span></p>
-                            <p class="text-muted fs-12">Lorem ipsum dolor sit.<a href="#"
-                                                                                 class="fw-semibold ms-1">Product Light Launched</a></p>
-                        </li>
-                        <li>
-                            <i class="task-icon bg-secondary"></i>
-                            <p class="fw-semibold mb-1 fs-13">Hermoine Replied<span class="text-muted fs-12 ms-2 float-end">6:12 am</span></p>
-                            <p class="text-muted fs-12">Hermoine replied to your post on<a href="#"
-                                                                                           class="fw-semibold ms-1"> Detailed Blog</a></p>
-                        </li>
-                        <li>
-                            <i class="task-icon bg-info"></i>
-                            <p class="fw-semibold mb-1 fs-13">New Request<span class="text-muted fs-12 ms-2 float-end">11:22 am</span></p>
-                            <p class="text-muted fs-12">Corner sent you a request<a href="#"
-                                                                                    class="fw-semibold ms-1"> Facebook</a></p>
-                        </li>
-                        <li>
-                            <i class="task-icon bg-warning"></i>
-                            <p class="fw-semibold mb-1 fs-13">Task Due<span class="text-muted fs-12 ms-2 float-end">4:32 pm</span></p>
-                            <p class="text-muted mb-0 fs-12">Task has to be completed <a href="#"
-                                                                                         class="fw-semibold ms-1"> New Project</a></p>
-                        </li>
-                        <li class="mb-2">
-                            <i class="task-icon bg-primary"></i>
-                            <p class="fw-semibold mb-1 fs-13">Maggice Liked<span class="text-muted fs-12 ms-2 float-end">5 mins ago</span></p>
-                            <p class="text-muted mb-0 fs-12">Maggice bruce liked your article <a href="#"
-                                                                                                 class="fw-semibold ms-1"> Article on Projects</a></p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-4 col-md-12">
-            <div class="card overflow-hidden">
-                <div class="card-header border-bottom">
-                    <div>
-                        <h3 class="card-title">Timeline</h3>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="tl-container">
-                        <div class="tl-blog primary">
-                            <div class="tl-img rounded-circle bg-primary-transparent">
-                                <i class="fe fe-user-plus text-primary text-17"></i>
-                            </div>
-                            <div class="tl-details d-flex">
-                                <p>
-                                    <span class="tl-title-main"> Mr White </span>  Started following you
-                                    <span class="d-flex text-muted fs-12">10 Jan 2022</span>
-                                </p>
-                                <p class="ms-auto text-13">
-                                    <span class="badge bg-primary text-white">1m</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="tl-blog secondary">
-                            <div class="tl-img rounded-circle bg-secondary-transparent">
-                                <i class="fe fe-message-circle text-secondary text-17"></i>
-                            </div>
-                            <div class="tl-details d-flex">
-                                <p>
-                                    <span class="tl-title-main"> Caroline </span>  1 Commented applied
-                                    <span class="d-flex text-muted fs-12">09 Jan 2022</span>
-                                </p>
-                                <p class="ms-auto text-13">
-                                    <span class="badge bg-secondary text-white">2m</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="tl-blog teritary">
-                            <div class="tl-img rounded-circle bg-info-transparent">
-                                <i class="fe fe-clipboard text-info text-17"></i>
-                            </div>
-                            <div class="tl-details d-flex">
-                                <p>
-                                    <span class="tl-title-main"> Juliette </span>  posted a new article
-                                    <span class="d-flex text-muted fs-12">07 Jan 2022</span>
-                                </p>
-                                <p class="ms-auto text-13">
-                                    <span class="badge bg-info text-white">3m</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="tl-blog custom-yellow">
-                            <div class="tl-img rounded-circle bg-warning-transparent">
-                                <i class="fe fe-thumbs-up text-warning text-17"></i>
-                            </div>
-                            <div class="tl-details d-flex">
-                                <p>
-                                    <span class="tl-title-main"> Akimov </span>  liked your site
-                                    <span class="d-flex text-muted fs-12">07 Dec 2022</span>
-                                </p>
-                                <p class="ms-auto text-13">
-                                    <span class="badge bg-warning text-white">4m</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="tl-blog primary">
-                            <div class="tl-img rounded-circle bg-primary-transparent">
-                                <i class="fe fe-book text-primary text-17"></i>
-                            </div>
-                            <div class="tl-details d-flex">
-                                <p class="mb-0">
-                                    <span class="tl-title-main"> Emilie </span>sent you a feedback
-                                    <span class="d-flex text-muted fs-12">06 Jan 2022</span>
-                                </p>
-                                <p class="ms-auto text-13 mb-0">
-                                    <span class="badge bg-orange text-white">5m</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-4 col-md-12">
-            <div class="card overflow-hidden">
-                <div class="card-header title-submenu border-bottom">
-                    <h3 class="card-title">To-Do List</h3>
-                </div>
-                <div class="card-body">
-                    <div class="todo-container">
-                        <div class="todo-blog primary">
-                            <label class="todo-img">
-                                <input type="checkbox" class="todo-checkbox" name="todo-checkbox" checked="checked">
-                                <span class="checkmark"></span>
-                            </label>
-                            <div class="todo-details d-flex">
-                                <p class="mb-0">Design a UI Dashboard for client
-                                    <span class="d-flex text-muted fs-12">3 days remaining</span>
-                                </p>
-                                <div class="ms-auto text-13 fw-semibold">
-                                    <a href="javascript:void(0)" class="btn btn-sm btn-outline-light">Edit</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="todo-blog secondary">
-                            <label class="todo-img">
-                                <input type="checkbox" class="todo-checkbox" name="todo-checkbox" checked="checked">
-                                <span class="checkmark"></span>
-                            </label>
-                            <div class="todo-details d-flex">
-                                <p class="mb-0">Design a UI Dashboard for client
-                                    <span class="d-flex text-muted fs-12">3 days remaining</span>
-                                </p>
-                                <div class="ms-auto text-13 fw-semibold">
-                                    <a href="javascript:void(0)" class="btn btn-sm btn-outline-light">Edit</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="todo-blog teritary">
-                            <label class="todo-img">
-                                <input type="checkbox" class="todo-checkbox" name="todo-checkbox">
-                                <span class="checkmark"></span>
-                            </label>
-                            <div class="todo-details d-flex">
-                                <p class="mb-0">Design a UI Dashboard for client
-                                    <span class="d-flex text-muted fs-12">3 days remaining</span>
-                                </p>
-                                <div class="ms-auto text-13 fw-semibold">
-                                    <a href="javascript:void(0)" class="btn btn-sm btn-outline-light">Edit</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="todo-blog custom-yellow">
-                            <label class="todo-img">
-                                <input type="checkbox" class="todo-checkbox" name="todo-checkbox" checked="checked">
-                                <span class="checkmark"></span>
-                            </label>
-                            <div class="todo-details d-flex">
-                                <p class="mb-0">Design a UI Dashboard for client
-                                    <span class="d-flex text-muted fs-12">3 days remaining</span>
-                                </p>
-                                <div class="ms-auto text-13 fw-semibold">
-                                    <a href="javascript:void(0)" class="btn btn-sm btn-outline-light">Edit</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="todo-blog primary">
-                            <label class="todo-img">
-                                <input type="checkbox" class="todo-checkbox" name="todo-checkbox">
-                                <span class="checkmark"></span>
-                            </label>
-                            <div class="todo-details d-flex">
-                                <p class="mb-0">Design a UI Dashboard for client
-                                    <span class="d-flex text-muted fs-12">3 days remaining</span>
-                                </p>
-                                <div class="ms-auto text-13 fw-semibold">
-                                    <a href="javascript:void(0)" class="btn btn-sm btn-outline-light">Edit</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ROW-3 END -->
 
     <!-- ROW-4 -->
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-12 col-sm-12">
             <div class="card product-sales-main">
                 <div class="card-header border-bottom">
@@ -739,7 +597,7 @@
                 </div>
             </div>
         </div><!-- COL END -->
-    </div>
+    </div> --}}
     <!-- ROW-4 END -->
 
 
