@@ -38,11 +38,11 @@ class EvaraController extends Controller
 
       ]);
     }
-    public function products()
+    public function products(Request $request)
     {
-        //        return 'ok';
-
-        
+        // Optional: Get the category if a category filter is applied, otherwise null
+        $category = Category::find($request->category_id);
+    
         return view('website.category.index1', [
             // Fetch products with pagination
             'products' => Product::orderBy('id', 'desc')
@@ -50,11 +50,12 @@ class EvaraController extends Controller
                 
             // Fetch categories with the count of related products
             'categories' => Category::with('products')->get(),
+            
+            // Pass the category (or null) to the view
+            'category' => $category,
         ]);
-       
-        
-        
     }
+    
     public function category($id)
     {
         //        return 'ok';

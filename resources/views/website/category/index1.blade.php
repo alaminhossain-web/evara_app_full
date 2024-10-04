@@ -4,11 +4,13 @@
 @section('title', 'Product Category Page')
 
 @section('body')
+
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
             <a href="{{ route('home') }}" rel="nofollow">Home</a>
             <span></span> Shop
+
             <span></span> {{ $category ? $category->name : 'Products' }}
         </div>
     </div>
