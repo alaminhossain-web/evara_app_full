@@ -173,8 +173,6 @@
                                 <label for="variantToggle" class="label-success"></label>
                             </div>
                             
-                           
-
                         </div>
                     </div>
                     <div class="container" id="variantSection" style="display: none;">

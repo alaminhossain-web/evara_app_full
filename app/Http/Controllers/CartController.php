@@ -17,12 +17,20 @@ class CartController extends Controller
      */
     public function index()
     {
-//        return Cart::content();
-        return view('website.cart.index',[
-            'products' => Cart::content(),
-            'colors' =>Color::get(),
-            'sizes' =>Size::get()
-        ]);
+
+        $cartContents = Cart::content();
+// return $cartContents;
+        $products = $cartContents->map(function ($item) {
+            $color = Color::find($item->options->color);
+            $size = Size::find($item->options->size);
+            
+            return (object) array_merge((array) $item, [
+                'color_name' => $color ? $color->name : 'N/A',
+                'size_name' => $size ? $size->name : 'N/A'
+            ]);
+        });
+        
+        return view('website.cart.index', compact('products'));
 
     }
 

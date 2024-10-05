@@ -30,6 +30,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                  
                                 @php($sum = 0)
                                 @foreach($products as $key=> $product)
                                     
@@ -37,9 +38,10 @@
                                         <td class="image product-thumbnail"><img src="{{ asset($product->options->image) }}" alt="#"></td>
                                         <td class="product-des product-name">
                                             <h5 class="product-name"><a href="{{route('product-detail', ['id' => $product->id])}}" target="_blank">{{ $product->name }}</a></h5>
+                                          
                                             <p class="font-xs">
-                                                <span class="fw-bold">Color: </span> {{$product->options->color}} <br/>
-                                                <span class="fw-bold">Size: </span> {{$product->options->size}} <br/>
+                                                <span class="fw-bold">Color: </span> {{ $product->color_name }} <br/>
+                <span class="fw-bold">Size: </span> {{ $product->size_name }} <br/>
                                             </p>
                                         </td>
                                         <td class="price" data-title="Price"><span>TK. {{ $product->price }} </span></td>
@@ -50,7 +52,7 @@
                                             </div>
                                         </td>                                      
                                         <td class="text-right" data-title="Cart">
-                                            <span>TK. {{$product->subtotal}} </span>
+                                            <span>TK. {{$subtotal = $product->price * $product->qty ?? null}} </span>
                                         </td>
                                         <td class="action" data-title="Remove">
                                             <a href="{{route('cart.delete', ['rowId' => $product->rowId])}}"  class="text-danger delete-item">
@@ -58,7 +60,7 @@
                                             </a>
                                         </td>
                                     </tr>
-                                    @php($sum += $product->subtotal)
+                                    @php($sum += $subtotal)
                                 @endforeach
                                 <tr>
                                     <td colspan="6" class="text-end">

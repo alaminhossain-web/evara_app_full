@@ -135,5 +135,13 @@ class Product extends Model
         }
         $product->save();
     }
+    public function color()
+    {
+        return $this->belongsTo(Color::class, 'options->color');
+    }
 
+    public function size()
+    {
+        return $this->belongsTo(Size::class, 'options->size');
+    }
 }
