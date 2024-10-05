@@ -47,6 +47,7 @@ class Product extends Model
         self::$product->regular_price = $request->regular_price;
         self::$product->selling_price = $request->selling_price;
         self::$product->stock_amount = $request->stock_amount;
+        self::$product->is_variant = $request->is_variant;
         if ($request->status)
         {
             self::$product->status = $request->status;
@@ -127,6 +128,7 @@ class Product extends Model
         $product->regular_price = $request->regular_price;
         $product->selling_price = $request->selling_price;
         $product->stock_amount = $request->stock_amount;
+        $product->is_variant = $request->is_variant;
         if ($request->status)
         {
             $product->status = $request->status;

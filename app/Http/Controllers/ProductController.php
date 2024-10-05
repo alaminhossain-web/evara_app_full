@@ -125,7 +125,7 @@ class ProductController extends Controller
     //     ],
        
     // ]);
-
+        if($request->is_variant == 1){
         ProductVariant::updateProductVariant(
             $request->sku,
             $request->variant_regular_price,
@@ -136,6 +136,7 @@ class ProductController extends Controller
             $request->size_id,
             $product->id
         );
+    }
         Product::updateProduct($request,$product);
         // ProductColor::updateProductColor($request->colors,$product->id);
         // ProductSize::updateProductSize($request->sizes,$product->id);
@@ -153,7 +154,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        dd($product);
+        // dd($product);
         Product::deleteProduct($product);
         ProductVariant::deleteVariant($product->id);
         ProductImage::deleteProductImage($product->id);

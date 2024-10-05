@@ -148,76 +148,90 @@
 
                         </div>
                     </div>
-                    <div class="container">
+                    <div class="row mb-4 ">
+                        <label for="" class="col-md-3 form-label">Variant Active</label>
+                        <div class="col-md-9">
+                            <div class="material-switch">
+                                <input type="hidden" name="is_variant" value="0" />
+                                <input id="variantToggle" name="is_variant" type="checkbox" value="1" 
+                                    @if($product->is_variant == 1) checked @endif />
+                                <label for="variantToggle" class="label-success"></label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--Variant Section Start-->
+                    <div class="container" id="variantSection" style="display: none;">
                         <div class="row mb-4 card">
                             <div class="card-body">
                                   <!-- Loop through existing variants -->
-                <div class="variant-wrapper">
-                    @foreach ($product->variants as $key => $data)
-                    {{-- {{ $data }} --}}
-                    <div class="field_wrapper mt-3">
-                        <label class="card-title">Product Variant</label>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <label class="form-label">SKU</label>
-                                <input type="text" class="form-control" name="sku[]" value="{{ $data->sku }}" placeholder="SKU" />
+                            <div class="variant-wrapper">
+                                @foreach ($product->variants as $key => $data)
+                                {{-- {{ $data }} --}}
+                                <div class="field_wrapper mt-3">
+                                    <label class="card-title">Product Variant</label>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label class="form-label">SKU</label>
+                                            <input type="text" class="form-control" name="sku[]" value="{{ $data->sku }}" placeholder="SKU" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label">Regular Price</label>
+                                            <input type="number" class="form-control" name="variant_regular_price[]" placeholder="Regular Price" value="{{ $data->variant_regular_price }}" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label">Selling Price</label>
+                                            <input type="number" class="form-control" name="variant_selling_price[]" placeholder="Selling Price" value="{{ $data->variant_selling_price }}" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label">Stock Amount</label>
+                                            <input type="number" class="form-control" name="variant_stock_amount[]" placeholder="Stock Amount" value="{{ $data->variant_stock_amount }}" />
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-4">
+                                            <label class="form-label">Image</label>
+                                            <input type="file" class="form-control" name="variant_image[]" />
+                                            @if ($data->variant_image)
+                                                <img src="{{ asset($data->variant_image) }}" alt="" style="height: 40px; margin-top: 5px;" />
+                                            @endif
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <label class="form-label">Select Size</label>
+                                            <select multiple class="form-control select2 form-select" data-placeholder="Select Size" name="size_id[]">
+                                                @foreach ($sizes as $size)
+                                                    <option value="{{ $size->id }}" @selected($size->id == $data->size_id)>{{ $size->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <label class="form-label">Select Color</label>
+                                            <select multiple class="form-control select2 form-select" data-placeholder="Select Color" name="color_id[]">
+                                                @foreach ($colors as $color)
+                                                    <option value="{{ $color->id }}" @selected($color->id == $data->color_id)>{{ $color->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2 d-flex align-items-end mb-5">
+                                            <a href="{{ route('delete.variants',$data->id) }}" class=" btn btn-sm btn-danger mb-5" title="Remove field">
+                                                <i class="fa fa-minus"></i> Remove
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                                <!-- Button to add new variant -->
+                                <div class="float-end mt-3">
+                                    <a href="javascript:void(0);" class="add_button1 btn btn-sm btn-primary mb-5" title="Add field">
+                                        <i class="fa fa-plus"></i> Add Variant
+                                    </a>
+                                </div>
+                            
                             </div>
-                            <div class="col-md-3">
-                                <label class="form-label">Regular Price</label>
-                                <input type="number" class="form-control" name="variant_regular_price[]" placeholder="Regular Price" value="{{ $data->variant_regular_price }}" />
-                            </div>
-                            <div class="col-md-3">
-                                <label class="form-label">Selling Price</label>
-                                <input type="number" class="form-control" name="variant_selling_price[]" placeholder="Selling Price" value="{{ $data->variant_selling_price }}" />
-                            </div>
-                            <div class="col-md-3">
-                                <label class="form-label">Stock Amount</label>
-                                <input type="number" class="form-control" name="variant_stock_amount[]" placeholder="Stock Amount" value="{{ $data->variant_stock_amount }}" />
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-4">
-                                <label class="form-label">Image</label>
-                                <input type="file" class="form-control" name="variant_image[]" />
-                                @if ($data->variant_image)
-                                    <img src="{{ asset($data->variant_image) }}" alt="" style="height: 40px; margin-top: 5px;" />
-                                @endif
-                            </div>
-                            <div class="col-md-3 form-group">
-                                <label class="form-label">Select Size</label>
-                                <select multiple class="form-control select2 form-select" data-placeholder="Select Size" name="size_id[]">
-                                    @foreach ($sizes as $size)
-                                        <option value="{{ $size->id }}" @selected($size->id == $data->size_id)>{{ $size->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-md-3 form-group">
-                                <label class="form-label">Select Color</label>
-                                <select multiple class="form-control select2 form-select" data-placeholder="Select Color" name="color_id[]">
-                                    @foreach ($colors as $color)
-                                        <option value="{{ $color->id }}" @selected($color->id == $data->color_id)>{{ $color->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-md-2 d-flex align-items-end mb-5">
-                                <a href="{{ route('delete.variants',$data->id) }}" class=" btn btn-sm btn-danger mb-5" title="Remove field">
-                                    <i class="fa fa-minus"></i> Remove
-                                </a>
                             </div>
                         </div>
                     </div>
-                    @endforeach
-                      <!-- Button to add new variant -->
-                      <div class="float-end mt-3">
-                        <a href="javascript:void(0);" class="add_button1 btn btn-sm btn-primary mb-5" title="Add field">
-                            <i class="fa fa-plus"></i> Add Variant
-                        </a>
-                      </div>
-                
-                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!--Variant Section End-->
                    
 
 
@@ -242,5 +256,24 @@
         </div>
     </div>
 </div>
+<script>
+    // Function to toggle visibility of the variant section based on checkbox
+    function toggleVariantSection() {
+        var variantSection = document.getElementById('variantSection');
+        var variantToggle = document.getElementById('variantToggle');
 
+        // Show the variant section if the checkbox is checked
+        if (variantToggle.checked) {
+            variantSection.style.display = 'block';
+        } else {
+            variantSection.style.display = 'none';
+        }
+    }
+
+    // Call the function on page load to check the initial state
+    window.onload = toggleVariantSection;
+
+    // Attach event listener to toggle visibility on checkbox change
+    document.getElementById('variantToggle').addEventListener('change', toggleVariantSection);
+</script>
 @endsection

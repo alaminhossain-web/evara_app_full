@@ -164,7 +164,20 @@
 
                         </div>
                     </div>
-                    <div class="container">
+                    <div class="row mb-4 ">
+                        <label for="" class="col-md-3 form-label">Variant Active</label>
+                        <div class="col-md-9">
+                            <div class="material-switch">
+                                <input type="hidden" name="is_variant" value="0" />
+                                <input id="variantToggle" name="is_variant" type="checkbox" value="1" />
+                                <label for="variantToggle" class="label-success"></label>
+                            </div>
+                            
+                           
+
+                        </div>
+                    </div>
+                    <div class="container" id="variantSection" style="display: none;">
                         <div class="row mb-4 card">
                             <div class="card-body">
                                 <div class="field_wrapper mt-3">
@@ -247,5 +260,15 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('variantToggle').addEventListener('change', function() {
+    var variantSection = document.getElementById('variantSection');
+    if (this.checked) {
+        variantSection.style.display = 'block';
+    } else {
+        variantSection.style.display = 'none';
+    }
+});
 
+</script>
 @endsection

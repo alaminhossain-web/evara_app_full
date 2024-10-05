@@ -11,7 +11,7 @@
 
         @include('admin.includes.meta')
     <!-- TITLE -->
-        <title>Evara Admin - @yield('title')</title>
+        <title>{{$setting->company_name}} - @yield('title')</title>
         @include('admin.includes.style')
     </head>
     <body class="ltr app sidebar-mini">
@@ -48,7 +48,7 @@
         </div>
 
         <!-- Country-selector modal-->
-        <div class="modal fade" id="country-selector">
+        {{-- <div class="modal fade" id="country-selector">
             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                 <div class="modal-content country-select-modal">
                     <div class="modal-header">
@@ -167,10 +167,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- /Country-selector modal-->
         <!--TASK MODAL-->
-        <div class="modal fade" id="Vertically">
+        {{-- <div class="modal fade" id="Vertically">
             <div class="modal-dialog modal-dialog-centered task-view-modal" role="document">
                 <div class="modal-content modal-content-demo">
 
@@ -613,7 +613,8 @@
                     </div>
                 </div>
             </div>
-        </div><!--TASK MODAL ENDS-->
+        </div> --}}
+        <!--TASK MODAL ENDS-->
 
         <!-- FOOTER -->
         <footer class="footer">
