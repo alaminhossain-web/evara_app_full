@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewOrder;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 
@@ -10,6 +11,7 @@ class BrandController extends Controller
     /**
      * Display a listing of the resource.
      */
+    private static $brand;
     public function index()
     {
         return view('admin.brand.index',[
@@ -28,17 +30,28 @@ class BrandController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    
     public function store(Request $request)
     {
-//        return $request;
-        $this->validate($request,[
+        // Validate the request
+        $this->validate($request, [
             'name' => 'required'
-        ],[
-            'name.required'         => 'Brand name field is required',
+        ], [
+            'name.required' => 'Brand name field is required',
         ]);
+    
+        // Create the brand and store the result
         Brand::newBrand($request);
+    
+        // Make sure $brand is not null and pass it as an array to the event
+        // if ($brand) {
+        //     event(new NewOrder(['brand' => $brand]));
+        // }
+    
+        // Return the response
         return back()->with('message', 'Brand info is created successfully.');
     }
+    
 
     /**
      * Display the specified resource.
@@ -72,7 +85,7 @@ class BrandController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    private static $brand;
+    
     public function destroy(Brand $brand)
     {
         self::$brand = Brand::find($brand->id);
@@ -82,7 +95,7 @@ class BrandController extends Controller
             }
         }
         self::$brand->delete();
-        return back()->with('message','delete brand Successfully');
+        return back()->with('error','Brand Deleted Successfully');
     }
 
 

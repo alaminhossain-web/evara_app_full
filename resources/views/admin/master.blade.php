@@ -16,9 +16,10 @@
     </head>
     <body class="ltr app sidebar-mini">
     <!-- GLOBAL-LOADER -->
-    <div id="global-loader">
+    {{-- <div id="global-loader">
         <img src="{{asset('/')}}admin/assets/images/loader.svg" class="loader-img" alt="Loader">
-    </div>
+    </div> --}}
+   
     <!-- /GLOBAL-LOADER -->
     <!-- PAGE -->
     <div class="page">
@@ -38,7 +39,10 @@
 
                     <!-- CONTAINER -->
                     <div class="main-container container-fluid">
-
+                        <audio id="notificationAudio" preload="auto">
+                            <source src="{{ asset('audio/nice.mp3') }}" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
                         @yield('body')
 
                     </div>

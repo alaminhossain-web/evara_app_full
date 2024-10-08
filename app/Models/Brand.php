@@ -77,6 +77,7 @@ class Brand extends Model
 
         self::$brand = new Brand();
         self::saveBasicInfo(self::$brand, $request, self::$imageUrl);
+        return self::$brand;
     }
 
     public static function checkStatus($brand)

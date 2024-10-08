@@ -211,6 +211,7 @@
 
     
 
+<script src="{{ asset('/') }}build/assets/app-65976120.js "></script>
 
 
 @endsection

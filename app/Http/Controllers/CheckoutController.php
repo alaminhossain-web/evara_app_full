@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use Cart;
+use App\Events\NewOrder;
 
 use Session;
 
@@ -30,9 +31,6 @@ class CheckoutController extends Controller
     }
 
     public function newOrder( Request $request){
-
-//        return $request;
-
         $this->customer = Customer::where('email', $request->email)
                                 ->orWhere('mobile',$request->mobile)
                                 ->first();
@@ -59,7 +57,9 @@ class CheckoutController extends Controller
             $this->order = Order::newOrder($this->customer, $request);
 
             OrderDetail::newOrderDetail($this->order);
-//        return 'success';
+            // Fire the event when the order is created
+        event(new NewOrder($this->order, $this->customer));
+
             return redirect('/complete-order')->with('message','Congratulation... your Order Submitted successfully. Please check your mail and wait we will contact with you soon.');
 
         }

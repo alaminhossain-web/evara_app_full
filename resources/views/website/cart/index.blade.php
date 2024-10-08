@@ -111,7 +111,7 @@
                                         <tbody>
                                         <tr>
                                             <td class="cart_total_label">Cart Subtotal</td>
-                                            <td class="cart_total_amount"><span class="font-lg fw-900 text-brand">Tk. {{ $sum }}</span></td>
+                                            <td class="cart_total_amount"><span class="font-lg fw-900 text-brand">Tk. {{ number_format($sum,2) }}</span></td>
                                         </tr>
                                         <tr>
                                             <td class="cart_total_label">Tax Amount (15%)</td>

@@ -1,6 +1,5 @@
 <!-- JQUERY JS -->
 <script src="{{asset('/')}}admin/assets/plugins/jquery/jquery.min.js"></script>
-
 <!-- BOOTSTRAP JS -->
 <script src="{{asset('/')}}admin/assets/plugins/bootstrap/js/popper.min.js"></script>
 <script src="{{asset('/')}}admin/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
@@ -97,6 +96,7 @@
 "></script>
 <!-- sweet alert 2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
      $(document).on('click', '.delete-item', function(event) {
     event.preventDefault();
@@ -385,8 +385,40 @@
         });
     });
 </script>
+<script>
+    // Function to add the pulse class to the notification icon
+function triggerNotificationPulse() {
+    const pulseElement = document.getElementById('notificationPulse');
+    if (pulseElement) {
+        pulseElement.classList.add('pulse');  // Add the pulse class
+    }
+}
 
+// Function to remove the pulse class (when dropdown is opened, for example)
+function clearNotificationPulse() {
+    const pulseElement = document.getElementById('notificationPulse');
+    if (pulseElement) {
+        pulseElement.classList.remove('pulse');  // Remove the pulse class
+    }
+}
 
+// Example of receiving a new notification
+window.Echo.channel('my-channel')
+    .listen('.notification-received', (data) => {
+        // Trigger the pulse effect when a new notification arrives
+        triggerNotificationPulse();
+
+        // Add new notification to the dropdown (This part is up to you)
+        // e.g. append a new notification element to `.notifications-menu`
+    });
+
+// Clear pulse when the user clicks to view notifications
+document.querySelector('.dropdown .nav-link.icon').addEventListener('click', function () {
+    clearNotificationPulse();  // Remove the pulse class when notifications dropdown is opened
+});
+
+</script>
+@stack('js')
 
 
 

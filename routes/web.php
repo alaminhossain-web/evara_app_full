@@ -47,7 +47,9 @@ use App\Http\Controllers\Vendor\VendorProfileController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+// Route::get('/pusher',function(){
+//     return view('pushe');
+// });
 Route::get('/', [EvaraController::class,'index'])->name('home');
 //Route::get('/product-category', [EvaraController::class,'category'])->name('product-category');
 Route::get('/product-all', [EvaraController::class,'products'])->name('products');
