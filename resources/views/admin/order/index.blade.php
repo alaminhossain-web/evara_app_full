@@ -41,7 +41,7 @@
                             
                         </nav>
                     </div>
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex mt-3 form-group me-2">
                         <!-- Date Filters -->
                         <select id="dateFilter" class="form-select select2" onchange="applyDateFilter(this.value)">
                             <option value="lifetime">Lifetime</option>
@@ -60,8 +60,8 @@
                             <button class="btn btn-primary" onclick="applyCustomFilter()">Apply</button>
                         </div>
                     </div>
-                    <div class="d-flex">
-                        <select name="status" id="orderStatusDropdown" class="form-select" onchange="updateSelectedOrdersStatus()">
+                    <div class="d-flex form-group">
+                        <select name="status" id="orderStatusDropdown" class="form-select select2" onchange="updateSelectedOrdersStatus()">
                             <option value="">Select Status</option>
                             <option value="Pending">Pending</option>
                             <option value="Processing">Processing</option>
