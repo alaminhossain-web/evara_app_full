@@ -94,11 +94,10 @@ class CustomerAuthController extends Controller
 
     public function showCustomerDownload( string $id)
     {
+        $order = Order::find($id);
 //        $pdf = PDF::loadHTML('<h1>Test</h1>'); // make pdf
-        $pdf = PDF::loadView('website.customer.invoice-download',[
-            'order' => Order::find($id)
-        ]); // make pdf
-        return $pdf->stream(); // show pdf
+        $pdf = PDF::loadView('website.customer.invoice-download',compact('order')); // make pdf
+        return $pdf->download('#invoice-'.'00' . $order->id . '.pdf'); // show pdf
 //        $pdf = PDF::loadView('pdf.document', $data);
 //        return $pdf->stream('document.pdf');
 

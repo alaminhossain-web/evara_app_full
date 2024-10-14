@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>A simple, clean, and responsive HTML invoice template</title>
+    <title>#invoice-00{{$order->id}}</title>
 
     <style>
         .invoice-box {
@@ -28,9 +28,9 @@
             vertical-align: top;
         }
 
-        .invoice-box table tr td:nth-child(2) {
+        /* .invoice-box table tr td:nth-child(2) {
             text-align: right;
-        }
+        } */
 
         .invoice-box table tr.top table td {
             padding-bottom: 20px;
@@ -111,17 +111,15 @@
                 <table>
                     <tr>
                         <td class="title">
-                            <img
-                                src="{{asset('/')}}website/assets/imgs/theme/logo.svg"
-                                style="width: 100%; max-width: 300px"
-                            />
+                            <img src="{{$setting->logo_png}}" style="height:40px" />
                         </td>
 
-                        <td>
+                        <td align="right">
                             Invoice #: 00{{$order->id}}<br />
-                            Order Date: {{ $order->order_date }}<br />
+                            Order Date: {{ \Carbon\Carbon::parse($order->order_date)->format('d, M Y') }}
+                            <br />
                             {{--                                                Invoice Date: {{ \Carbon\Carbon::now()->format('Y-m-d') }}--}}
-                            Invoice Date: {{ date('Y-m-d') }}
+                            Invoice Date: {{ date('d, M Y') }}
                         </td>
                     </tr>
                 </table>
@@ -140,13 +138,12 @@
                             {{ $order->delivery_address }}<br/>
                         </td>
 
-                        <td>
+                        <td align="right">
 
                             <h4>Company Info</h4>
-                            Evera Corporation<br />
-                            Monayem<br />
-                            01747534818<br />
-                            monayem@example.com
+                            {{ $setting->company_name }}<br />
+                            {{$setting->contact_phone}}<br />
+                            {{$setting->contact_email}}
                         </td>
                     </tr>
                 </table>
@@ -154,14 +151,13 @@
         </tr>
 
         <tr class="heading">
-            <td colspan="3" >Payment Method</td>
-
-            <td>{{$order->payment_method}}</td>
+            <td colspan="3">Payment Method</td>
+            <td align="right">{{$order->payment_method}}</td>
         </tr>
-
+       
         <tr class="details">
-            <td colspan="3" >Order Total</td>
-            <td colspan="3">{{$order->order_total}}</td>
+            <td colspan="3">Order Total</td>
+            <td align="right">{{$order->order_total}}</td>
         </tr>
 
         <tr class="heading">
@@ -176,9 +172,9 @@
         @foreach($order->orderDetails as $orderDetail)
             <tr class="item">
                 <td>{{ $orderDetail->product_name }}</td>
-                <td>{{ $orderDetail->product_price }}</td>
+                <td align="center" >{{ $orderDetail->product_price }}</td>
                 <td align="center">{{ $orderDetail->product_qty }}</td>
-                <td align="right">${{ $total = $orderDetail->product_qty * $orderDetail->product_price }}</td>
+                <td align="right">{{ $total = $orderDetail->product_qty * $orderDetail->product_price }} Tk.</td>
             </tr>
             @php
                 $sum = $sum + $total

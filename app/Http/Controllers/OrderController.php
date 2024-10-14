@@ -150,13 +150,11 @@ class OrderController extends Controller
 
     public function showDownload( string $id)
     {
+            $order= Order::find($id);
+            $logo =Setting::first();
 //        $pdf = PDF::loadHTML('<h1>Test</h1>'); // make pdf
-        $pdf = pdf::loadView('admin.order.invoice-download',[
-            'order' => Order::find($id),
-            'logo'  =>Setting::first()
-
-        ]); // make pdf
-        return $pdf->stream(); // show pdf
+        $pdf = pdf::loadView('admin.order.invoice-download',compact('order','logo')); // make pdf
+        return $pdf->stream('#invoice-'.'00' . $order->id . '.pdf'); // show pdf
 
 
 //        return view('admin.order.invoice-download',[
