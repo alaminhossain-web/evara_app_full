@@ -443,12 +443,12 @@
     /*-----------------------
         Magnific Popup
     ------------------------*/
-    $('.img-popup').magnificPopup({
-        type: 'image',
-        gallery: {
-            enabled: true
-        }
-    });
+    // $('.img-popup').magnificPopup({
+    //     type: 'image',
+    //     gallery: {
+    //         enabled: true
+    //     }
+    // });
 
     $('.btn-close').on('click', function(e) {
         $('.zoomContainer').remove();
@@ -512,18 +512,18 @@
     });
 
     // Isotope active
-    $('.grid').imagesLoaded(function() {
-        // init Isotope
-        var $grid = $('.grid').isotope({
-            itemSelector: '.grid-item',
-            percentPosition: true,
-            layoutMode: 'masonry',
-            masonry: {
-                // use outer width of grid-sizer for columnWidth
-                columnWidth: '.grid-item',
-            }
-        });
-    });
+    // $('.grid').imagesLoaded(function() {
+    //     // init Isotope
+    //     var $grid = $('.grid').isotope({
+    //         itemSelector: '.grid-item',
+    //         percentPosition: true,
+    //         layoutMode: 'masonry',
+    //         masonry: {
+    //             // use outer width of grid-sizer for columnWidth
+    //             columnWidth: '.grid-item',
+    //         }
+    //     });
+    // });
 
     /*====== SidebarSearch ======*/
     function sidebarSearch() {
