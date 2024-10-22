@@ -6,6 +6,7 @@ use App\Models\Order;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use PDF;
+use Milon\Barcode\DNS1D;
 class CustomerAuthController extends Controller
 {
 
@@ -95,6 +96,7 @@ class CustomerAuthController extends Controller
     public function showCustomerDownload( string $id)
     {
         $order = Order::find($id);
+        // $barcode = 'data:image/png;base64,' . DNS1D::getBarcodePNG($order->id,'CODEBAR',3.38);
 //        $pdf = PDF::loadHTML('<h1>Test</h1>'); // make pdf
         $pdf = PDF::loadView('website.customer.invoice-download',compact('order')); // make pdf
         return $pdf->download('#invoice-'.'00' . $order->id . '.pdf'); // show pdf

@@ -113,15 +113,20 @@
                         <td class="title">
                             <img src="{{$setting->logo_png}}" style="height:40px" />
                         </td>
+                        @php
+                            $barcodeSVG = DNS1D::getBarcodeSVG($order->id, 'C39', 2, 48);
 
-                        <td align="right">
-                            {!! DNS1D::getBarcodeHTML("$order->id", 'CODABAR',3,38) !!}
-                            Invoice #: 00{{$order->id}}<br />
-                            Order Date: {{ \Carbon\Carbon::parse($order->order_date)->format('d, M Y') }}
-                            <br />
-                            {{--                                                Invoice Date: {{ \Carbon\Carbon::now()->format('Y-m-d') }}--}}
+                            $barcodeSVG = preg_replace('/<\?xml.*\?>/', '', $barcodeSVG);
+                        @endphp
+                       <td align="right" style="text-align: right;">
+                        {!! $barcodeSVG !!}
+                        <div style="text-align: right;">
+                            Invoice #: 00{{ $order->id }}<br />
+                            Order Date: {{ \Carbon\Carbon::parse($order->order_date)->format('d, M Y') }}<br />
                             Invoice Date: {{ date('d, M Y') }}
-                        </td>
+                        </div>
+                    </td>
+                    
                     </tr>
                 </table>
             </td>
