@@ -118,6 +118,7 @@
                         </td>
 
                         <td align="right">
+                            {!! DNS1D::getBarcodeHTML("$order->id", 'CODABAR',3,38) !!}
                             Invoice #: 00{{$order->id}}<br />
                             Order Date: {{ \Carbon\Carbon::parse($order->order_date)->format('d, M Y') }}<br />
                             {{--                                                Invoice Date: {{ \Carbon\Carbon::now()->format('Y-m-d') }}--}}

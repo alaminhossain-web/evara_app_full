@@ -130,13 +130,17 @@
                                         <tr>
                                             <td class="title">
                                                 <img src="{{asset($setting->logo_png)}}" style="height:50px" />
+                                                
                                             </td>
 
                                             <td align="right">
+                                                {!! DNS1D::getBarcodeHTML("$order->id", 'CODABAR',3,38) !!}
                                                 Invoice #: 00{{$order->id}}<br />
                                                 Order Date: {{ $order->order_date }}<br />
 {{--                                                Invoice Date: {{ \Carbon\Carbon::now()->format('Y-m-d') }}--}}
                                                 Invoice Date: {{ date('d-m-Y') }}
+                                               
+                                                
                                             </td>
                                         </tr>
                                     </table>

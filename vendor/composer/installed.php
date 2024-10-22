@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'e489495bd81c5f0f39abd2a4bdcadb6bfb736c0c',
+        'reference' => '6ef7b1c1a2baf5566e3e5df7f90349dae8dc862f',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -448,7 +448,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'e489495bd81c5f0f39abd2a4bdcadb6bfb736c0c',
+            'reference' => '6ef7b1c1a2baf5566e3e5df7f90349dae8dc862f',
             'dev_requirement' => false,
         ),
         'laravel/pint' => array(
@@ -566,6 +566,15 @@
             'install_path' => __DIR__ . '/../masterminds/html5',
             'aliases' => array(),
             'reference' => 'f47dcf3c70c584de14f21143c55d9939631bc6cf',
+            'dev_requirement' => false,
+        ),
+        'milon/barcode' => array(
+            'pretty_version' => 'v11.0.0',
+            'version' => '11.0.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../milon/barcode',
+            'aliases' => array(),
+            'reference' => '1f4031adb52146bb7fbe88ef42214011376f9cbe',
             'dev_requirement' => false,
         ),
         'mindscms/laravelshoppingcart' => array(
